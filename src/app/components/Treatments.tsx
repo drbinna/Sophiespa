@@ -537,9 +537,9 @@ export function Treatments() {
             </p>
             <div className="mt-6">
               <p style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgba(44,44,44,0.25)", fontFamily: "'Inter', sans-serif" }} className="uppercase mb-3">MENU</p>
-              <MenuRow name="Signature Relaxation" duration="60 min" price="$75" />
-              <MenuRow name="Deep Tissue Recovery" duration="45 min" price="$80" />
-              <MenuRow name="Hot Stone Ceremony" duration="50 min" price="$60" />
+              <MenuRow name="Relaxation Massage" duration="60 / 90 / 120 min" price="$170 / $220 / $280" />
+              <MenuRow name="Swedish Remedial Massage" duration="60 / 90 / 120 min" price="$170 / $220 / $280" />
+              <MenuRow name="Deep Tissue & Sports Massage" duration="60 / 90 / 120 min" price="$170 / $220 / $280" />
             </div>
             <div className="mt-6">
               <PillButton>Book a Massage</PillButton>

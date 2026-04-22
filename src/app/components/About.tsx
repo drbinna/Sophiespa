@@ -12,10 +12,10 @@ const values = [
 ];
 
 const travelRates = [
-  { time: "Up to 30 mins", fee: "$30" },
-  { time: "45 mins", fee: "$40" },
-  { time: "60 mins", fee: "$50" },
-  { time: "70+ mins", fee: "From $60" },
+  { time: "Core service area", fee: "Included" },
+  { time: "15–25 km", fee: "$20" },
+  { time: "25–40 km", fee: "$40" },
+  { time: "40 km +", fee: "Price on request" },
 ];
 
 export function About() {
@@ -286,9 +286,9 @@ export function About() {
                 opacity: 0.55,
               }}
             >
-              Anywhere in Auckland. Travel fees are based on the time it takes to
-              reach you from our starting location, calculated using maps — so
-              everything is clear and upfront.
+              Anywhere in Auckland. Travel within our core service area is
+              included — for locations beyond, fees are calculated by distance,
+              so everything is clear and upfront.
             </p>
           </div>
 
@@ -309,7 +309,7 @@ export function About() {
                   border: "0.5px solid rgba(196,146,155,0.1)",
                 }}
               >
-                <Clock
+                <MapPin
                   size={18}
                   className="text-[#C4929B] mx-auto"
                   strokeWidth={1.5}

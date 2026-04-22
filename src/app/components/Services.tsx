@@ -3,10 +3,10 @@ import { useSearchParams } from "react-router";
 import { MapPin, Clock, Phone } from "lucide-react";
 
 const travelRates = [
-  { time: "Up to 30 mins", fee: "$30" },
-  { time: "45 mins", fee: "$40" },
-  { time: "60 mins", fee: "$50" },
-  { time: "70+ mins", fee: "From $60" },
+  { time: "Core service area", fee: "Included" },
+  { time: "15–25 km", fee: "$20" },
+  { time: "25–40 km", fee: "$40" },
+  { time: "40 km +", fee: "Price on request" },
 ];
 
 const CREAM = "#FDF8F4";
@@ -381,10 +381,10 @@ const facials: Treatment[] = [
 const massages: Treatment[] = [
   {
     name: "Relaxation Massage",
-    duration: "TBC",
-    price: "TBC",
+    duration: "60 / 90 / 120 min",
+    price: "$170 / $220 / $280",
     description:
-      "Using flowing strokes, this treatment soothes, calms & centres the mind & body. Light to medium pressure is tailored to suit each individual, allowing tension to gently melt away.\n\nA full-body sequence creates a deeply restorative experience. Aromatherapy can be included if preferred to further enhance relaxation.\n\nOptional aromatherapy can be used with massage to enhance your spa experience. Warm, soothing hot towels complete the session, removing excess oils and leaving you feeling refreshed, grounded, and renewed.",
+      "Light to medium pressure. A full-body sequence creates a soothing restorative experience. Using flowing strokes, this treatment calms and centres the mind and body, allowing tension to gently melt away. Aromatherapy can be included if preferred to further enhance relaxation.\n\nLuxurious hot towels are applied to your skin to complete the session, removing excess oils and leaving you feeling refreshed, grounded, and renewed.",
     includes: [
       "Full-body relaxation massage",
       "Warm aromatherapy towels",
@@ -395,10 +395,10 @@ const massages: Treatment[] = [
   },
   {
     name: "Swedish Remedial Massage",
-    duration: "TBC",
-    price: "TBC",
+    duration: "60 / 90 / 120 min",
+    price: "$170 / $220 / $280",
     description:
-      "Swedish Remedial Massage is the perfect blend of relaxation and results. This classic full-body treatment combines smooth, flowing movements with targeted deeper techniques to relieve muscle tension. By easing tightness and releasing stored stress, it helps improve mobility and reduce stiffness.\n\nWith extensive experience, Soph tailors each session to your individual needs, ensuring maximum relaxation while effectively addressing deeper areas of tension. Pressure and technique are always adjusted to suit your comfort and preferences, creating a personalised and restorative experience.",
+      "Medium to firm pressure. The perfect blend of relaxation and results. This classic full-body treatment combines smooth, flowing movements with targeted deeper techniques to relieve muscle tension. By easing tightness and releasing stored stress, it helps improve mobility and reduce stiffness.\n\nWith extensive experience, Soph tailors each session to your individual needs, ensuring maximum relaxation while effectively addressing deeper areas of tension. Pressure and technique are always adjusted to suit your comfort and preferences, creating a personalised and restorative experience.",
     includes: [
       "Full-body massage",
       "Flowing Swedish strokes",
@@ -411,10 +411,10 @@ const massages: Treatment[] = [
   },
   {
     name: "Deep Tissue & Sports Massage",
-    duration: "TBC",
-    price: "TBC",
+    duration: "60 / 90 / 120 min",
+    price: "$170 / $220 / $280",
     description:
-      "A deeply restorative, results-focused treatment designed to ease muscle tension and support overall mobility. Using firm yet intuitive pressure and advanced muscle release techniques, this massage works into the deeper layers of muscle to melt away tightness and ease trigger points.\n\nEach session is full-body, with gentle focus directed to areas that need extra care. Pressure is always tailored to your comfort, ensuring a treatment that feels effective, grounding, and deeply relaxing rather than overwhelming.\n\nWith postgraduate training in deep tissue techniques and experience working with elite athletes, Soph blends therapeutic skill with a calming, holistic approach to help release tension, restore ease of movement, and rebalance the body.\n\nLeave feeling looser, lighter, and completely renewed.",
+      "Firm deep pressure. A deeply restorative, results-focused treatment designed to ease muscle tension and support overall mobility. Using firm yet intuitive pressure and advanced muscle release techniques, this massage works into the deeper layers of muscle to melt away tightness and ease trigger points.\n\nEach session is full-body, with gentle focus directed to areas that need extra care. Pressure is always tailored to your comfort, ensuring a treatment that feels effective, grounding, and deeply relaxing rather than overwhelming.\n\nWith postgraduate training in deep tissue techniques and experience working with elite athletes, Soph blends therapeutic skill with a calming, holistic approach to help release tension, restore ease of movement, and rebalance the body. Leave feeling looser, lighter, and completely renewed.",
     includes: [
       "Full-body deep tissue work",
       "Trigger point therapy",

@@ -54,21 +54,24 @@ At Sophie Spa, we understand how life's stresses and hectic schedules can take a
 Sophie brings extensive massage training, 19 years of experience, current massage work on rugby professionals, and her own natural intuitive gift for massage. Each session concludes with warm, soothing hot towels to refresh the skin and leave you feeling renewed.
 
 Relaxation Massage  
-Duration: TBC  
-Price: TBC  
-Using flowing strokes, this treatment soothes, calms and centres the mind and body. Light to medium pressure is tailored to suit each individual, allowing tension to gently melt away. A full-body sequence creates a deeply restorative experience. Aromatherapy can be included if preferred to further enhance relaxation. Warm, soothing hot towels complete the session, removing excess oils and leaving you feeling refreshed, grounded, and renewed.  
+Duration: 60 / 90 / 120 minutes  
+Price: $170 / $220 / $280  
+Pressure: Light to medium.  
+A full-body sequence creates a soothing restorative experience. Using flowing strokes, this treatment calms and centres the mind and body, allowing tension to gently melt away. Aromatherapy can be included if preferred to further enhance relaxation. Luxurious hot towels are applied to your skin to complete the session, removing excess oils and leaving you feeling refreshed, grounded, and renewed.  
 Includes: Full-body relaxation massage, warm aromatherapy towels, tailored pressure, calming environment setup.
 
 Swedish Remedial Massage  
-Duration: TBC  
-Price: TBC  
+Duration: 60 / 90 / 120 minutes  
+Price: $170 / $220 / $280  
+Pressure: Medium to firm.  
 The perfect blend of relaxation and results. This classic full-body treatment combines smooth, flowing movements with targeted deeper techniques to relieve muscle tension. By easing tightness and releasing stored stress, it helps improve mobility and reduce stiffness. Soph tailors each session to your individual needs, ensuring maximum relaxation while effectively addressing deeper areas of tension. Pressure and technique are always adjusted to suit your comfort and preferences.  
 Includes: Full-body massage, flowing Swedish strokes, targeted remedial techniques, circulation boost, muscle tension release.  
 Note: Pressure tailored to your preference.
 
 Deep Tissue and Sports Massage  
-Duration: TBC  
-Price: TBC  
+Duration: 60 / 90 / 120 minutes  
+Price: $170 / $220 / $280  
+Pressure: Firm deep pressure.  
 A deeply restorative, results-focused treatment designed to ease muscle tension and support overall mobility. Using firm yet intuitive pressure and advanced muscle release techniques, this massage works into the deeper layers of muscle to melt away tightness and ease trigger points. Each session is full-body, with gentle focus directed to areas that need extra care. Pressure is always tailored to your comfort, ensuring a treatment that feels effective, grounding, and deeply relaxing rather than overwhelming. With postgraduate training in deep tissue techniques and experience working with elite athletes, Soph blends therapeutic skill with a calming, holistic approach.  
 Includes: Full-body deep tissue work, trigger point therapy, sports massage techniques, mobility restoration, targeted muscle release.  
 Note: Trusted by professional NZ and international rugby teams.
@@ -130,12 +133,12 @@ Afterpay available at appointment.
 
 ## Mobile Travel Fees
 
-Sophie Spa is a fully mobile service across Auckland. Travel fees are based on the time it takes to reach you from Sophie's starting location, calculated using maps — so everything is clear and upfront.
+Sophie Spa is a fully mobile service, bringing a luxury spa experience to your home or chosen location anywhere in Auckland. Travel within our core service area is included. For locations beyond, fees are calculated by distance — clear and upfront, no surprises.
 
-Up to 30 minutes drive time: $30  
-Up to 45 minutes drive time: $40  
-Up to 60 minutes drive time: $50  
-70+ minutes drive time: From $60  
+Core service area: Included  
+15–25 km: $20  
+25–40 km: $40  
+40 km +: Price on request  
 
 Travel fees are added on top of the treatment price. For a quick travel quote, contact Sophie on 027 251 6985.
 
