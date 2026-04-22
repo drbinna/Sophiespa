@@ -144,7 +144,6 @@ function ProductCarousel() {
             maxHeight: "200px",
             width: "auto",
             objectFit: "contain",
-            mixBlendMode: "multiply",
             transition: "opacity 0.3s ease",
           }}
         />
@@ -329,7 +328,7 @@ function ProductSpotlight() {
               <img
                 src={current.img}
                 alt={current.name}
-                style={{ maxHeight: "380px", width: "auto", objectFit: "contain", mixBlendMode: "multiply" }}
+                style={{ maxHeight: "380px", width: "auto", objectFit: "contain" }}
               />
             </div>
 
@@ -398,7 +397,7 @@ function ProductSpotlight() {
               <img
                 src={product.img}
                 alt={product.name}
-                style={{ maxHeight: "55px", width: "auto", objectFit: "contain", mixBlendMode: "multiply" }}
+                style={{ maxHeight: "55px", width: "auto", objectFit: "contain" }}
               />
               <span
                 className="mt-2 text-center"
