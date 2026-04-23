@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useNavigate } from "react-router";
 
 const slides = [
   {
@@ -8,35 +7,35 @@ const slides = [
     label: "Signature Massage",
     text: ["DEEP RELAXATION", "TAILORED TO YOU"],
     desc: "Choose from Swedish, deep tissue, or hot stone techniques — each session customised to your body's needs.",
-    link: "/services?tab=Massages",
+    serviceId: "relaxation-massage",
   },
   {
     img: "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774171074/Gemini_Generated_Image_syjv4hsyjv4hsyjv_gfbpzs.png",
     label: "Hydra-Glow Facial",
     text: ["REVEAL YOUR", "NATURAL RADIANCE"],
     desc: "Multi-step facial combining deep cleansing, hydrating masks, and LED light therapy for luminous skin.",
-    link: "/services?tab=Facials",
+    serviceId: "dermaplane-go",
   },
   {
     img: "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774170431/Soph_Exfo_mwep5s.jpg",
     label: "Body Botanical Scrub",
     text: ["POLISH, SOFTEN", "RENEW"],
     desc: "Full-body exfoliation ritual using hand-blended sugar and salt scrubs infused with essential oils.",
-    link: "/services?tab=Exfoliation",
+    serviceId: "botanical-scrub",
   },
   {
     img: "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774171377/Gemini_Generated_Image_2ys0xi2ys0xi2ys0_w7q9fq.png",
     label: "Couples Retreat",
     text: ["SHARED STILLNESS", "DEEPER CONNECTION"],
     desc: "A 120-minute luxury experience for two — side-by-side massages, mini facial, and aromatic foot soak.",
-    link: "/services?tab=Massages",
+    serviceId: "not-sure",
   },
   {
     img: "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774170986/Gemini_Generated_Image_c597zfc597zfc597_ft7hrw.png",
     label: "Our Promise",
     text: ["ORGANIC, PURE", "& ECO-FRIENDLY"],
     desc: "Every product is certified organic and hypoallergenic. Sustainability isn't a buzzword for us — it's a promise.",
-    link: "/about",
+    serviceId: "not-sure",
   },
 ];
 
@@ -44,7 +43,6 @@ export function Slideshow() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState<"next" | "prev">("next");
   const [isAnimating, setIsAnimating] = useState(false);
-  const navigate = useNavigate();
 
   const goTo = useCallback(
     (next: number, dir: "next" | "prev") => {
@@ -128,7 +126,13 @@ export function Slideshow() {
               {slides[current].desc}
             </p>
             <button
-              onClick={() => navigate(slides[current].link)}
+              onClick={() =>
+                window.dispatchEvent(
+                  new CustomEvent("sophie:open-booking", {
+                    detail: { serviceId: slides[current].serviceId },
+                  })
+                )
+              }
               className="px-8 py-3.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-['Inter'] cursor-pointer hover:bg-white/20 transition-all duration-300"
               style={{ fontSize: "0.8rem", fontWeight: 500, letterSpacing: "0.1em" }}
             >

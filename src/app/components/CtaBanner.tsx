@@ -23,7 +23,7 @@ export function CtaBanner() {
           Escape the rush and rediscover balance. Book your next treatment.
         </p>
         <button
-          onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+          onClick={() => window.dispatchEvent(new CustomEvent("sophie:open-booking"))}
           className="px-10 py-4 rounded-full bg-[#C4929B] text-white border-none cursor-pointer hover:shadow-[0_0_30px_rgba(196,146,155,0.5)] transition-all duration-500"
           style={{ fontSize: "0.95rem", fontWeight: 500, letterSpacing: "0.05em" }}
         >
