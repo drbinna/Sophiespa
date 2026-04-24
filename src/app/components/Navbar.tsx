@@ -4,8 +4,6 @@ import { useNavigate, useLocation } from "react-router";
 
 const LOGO_URL = "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774083867/sophie_spa_logo_white_serif_irvlex.png";
 
-const LOGO_URL = "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774083867/sophie_spa_logo_white_serif_irvlex.png";
-
 const navLinks = [
   { label: "Home", type: "route" as const, to: "/" },
   { label: "About", type: "route" as const, to: "/about" },
