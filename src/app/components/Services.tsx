@@ -342,39 +342,21 @@ const facials: Treatment[] = [
     image: IMG_GLOW_N_GO,
   },
   {
-    name: "Holistic Facial & Foot Ritual",
+    name: "Holistic Reflexology Facial",
     duration: "75 minutes",
-    price: "$189",
+    price: "$159",
     description:
-      "Enjoy a fully mobile, indulgent facial experience in the comfort of your own home. This holistic treatment nourishes your skin with botanical ingredients while submerging your feet in an infusion of herbs, flower petals, aromatherapy and salts for their relaxing therapeutic benefits. Boosts circulation, calms sensitivity, soothes inflammation, and supports lymphatic drainage for a natural, healthy glow. A head-to-toe treat for the soul.",
+      "Enjoy a fully mobile, indulgent facial experience in the comfort of your own home. This holistic treatment nourishes your skin with botanical ingredients, boosting circulation, calming sensitivity, soothing inflammation, and supporting lymphatic drainage for a natural, healthy glow. Using plant-based, skin-healing botanicals to improve skin barrier function.",
     includes: [
       "Botanical facial",
-      "Herbal & floral foot soak",
       "Plant-based skin-healing botanicals",
       "Lymphatic drainage",
       "Barrier repair",
-      "Magnesium absorption therapy",
+      "Circulation boost",
+      "Inflammation relief",
     ],
     note: "Using plant-based, skin-healing botanicals to improve skin barrier function",
     image: IMG_HOLISTIC,
-  },
-  {
-    name: "Dermaplane Super Glow",
-    duration: "90 minutes",
-    price: "$229",
-    description:
-      "Enjoy true transformation and a super glowing, luminous complexion. Everything in the Glow n Go plus indulgent facial reflexology massage, a double mask system — first a soothing hydrating mask, then a decadent rose jelly mask to enhance absorption. Expert hands dissolve tension with facial reflexology to release stagnant lymph and puffiness, followed by neck, shoulder and scalp massage to truly melt your cares away. Leave feeling illuminated, smooth and dewy for a camera-ready super-glow.",
-    includes: [
-      "Everything in Glow n Go",
-      "2x hydrating & nourishing masks",
-      "Facial reflexology massage",
-      "Rose jelly mask",
-      "Neck & shoulder massage",
-      "Scalp massage",
-      "Hot towels",
-    ],
-    note: "Skincare samples & homecare advice available",
-    image: IMG_SUPER_GLOW,
   },
 ];
 
@@ -716,15 +698,15 @@ export function Services() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: "16px" }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4" style={{ gap: "16px" }}>
             {travelRates.map((rate) => (
               <div
                 key={rate.time}
-                className="text-center"
+                className="flex sm:flex-col items-center sm:text-center gap-4 sm:gap-0"
                 style={{
                   background: "white",
                   borderRadius: "16px",
-                  padding: "28px 16px",
+                  padding: "20px 24px",
                   boxShadow: "0 4px 20px rgba(180,140,120,0.08)",
                   border: "0.5px solid rgba(196,146,155,0.1)",
                 }}
@@ -733,30 +715,31 @@ export function Services() {
                   size={18}
                   color={ROSE}
                   strokeWidth={1.5}
-                  className="mx-auto"
-                  style={{ marginBottom: "12px", opacity: 0.6 }}
+                  style={{ marginBottom: "0", opacity: 0.6, flexShrink: 0 }}
                 />
-                <p
-                  style={{
-                    fontSize: "12px",
-                    fontFamily: "'Inter', sans-serif",
-                    color: "rgba(44,44,44,0.4)",
-                    letterSpacing: "0.03em",
-                    marginBottom: "8px",
-                  }}
-                >
-                  {rate.time}
-                </p>
-                <p
-                  style={{
-                    fontSize: "28px",
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontWeight: 500,
-                    color: ROSE,
-                  }}
-                >
-                  {rate.fee}
-                </p>
+                <div className="flex-1 sm:mt-3">
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      fontFamily: "'Inter', sans-serif",
+                      color: "rgba(44,44,44,0.4)",
+                      letterSpacing: "0.03em",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    {rate.time}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "22px",
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontWeight: 500,
+                      color: ROSE,
+                    }}
+                  >
+                    {rate.fee}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

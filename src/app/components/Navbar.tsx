@@ -4,6 +4,8 @@ import { useNavigate, useLocation } from "react-router";
 
 const LOGO_URL = "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774083867/sophie_spa_logo_white_serif_irvlex.png";
 
+const LOGO_URL = "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774083867/sophie_spa_logo_white_serif_irvlex.png";
+
 const navLinks = [
   { label: "Home", type: "route" as const, to: "/" },
   { label: "About", type: "route" as const, to: "/about" },
@@ -50,7 +52,17 @@ export function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-white/70 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.08)]" : ""}`}>
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-center">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between md:justify-center">
+        {/* Mobile logo */}
+        <button onClick={goHome} className="md:hidden bg-transparent border-none cursor-pointer p-0">
+          <img
+            src={LOGO_URL}
+            alt="Sophie Spa"
+            className="h-8 w-auto object-contain"
+            style={{ filter: scrolled ? "none" : "brightness(0) invert(1)" }}
+          />
+        </button>
+
         <div className="hidden md:flex items-center gap-4">
           {navLinks.map((link) => (
             <button

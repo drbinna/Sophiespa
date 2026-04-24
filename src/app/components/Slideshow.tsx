@@ -160,19 +160,20 @@ export function Slideshow() {
 
       {/* Counter */}
       <div
-        className="absolute z-10 bottom-12 left-6 md:left-12 font-['Inter'] text-white/40"
+        className="absolute z-10 bottom-14 left-6 md:left-12 font-['Inter'] text-white/40"
         style={{ fontSize: "0.75rem", fontWeight: 300, letterSpacing: "0.15em" }}
       >
         0{current + 1} / 0{slides.length}
       </div>
 
       {/* Progress dots */}
-      <div className="absolute z-10 bottom-12 left-1/2 -translate-x-1/2 flex gap-2">
+      <div className="absolute z-10 bottom-10 left-1/2 -translate-x-1/2 flex gap-2 items-center">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => goTo(i, i > current ? "next" : "prev")}
-            className="bg-transparent border-none cursor-pointer p-0"
+            className="bg-transparent border-none cursor-pointer p-2"
+            aria-label={`Go to slide ${i + 1}`}
           >
             <div
               className="h-[2px] rounded-full transition-all duration-500"

@@ -122,16 +122,16 @@ function ProductCarousel() {
         {/* Prev / Next arrows */}
         <button
           onClick={handlePrev}
-          className="absolute left-1 top-1/2 -translate-y-1/2 z-10 rounded-full cursor-pointer flex items-center justify-center"
-          style={{ width: 28, height: 28, background: "rgba(255,255,255,0.7)", boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 rounded-full cursor-pointer flex items-center justify-center"
+          style={{ width: 36, height: 36, background: "rgba(255,255,255,0.7)", boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}
           aria-label="Previous product"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={CHARCOAL} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 19l-7-7 7-7"/></svg>
         </button>
         <button
           onClick={handleNext}
-          className="absolute right-1 top-1/2 -translate-y-1/2 z-10 rounded-full cursor-pointer flex items-center justify-center"
-          style={{ width: 28, height: 28, background: "rgba(255,255,255,0.7)", boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 rounded-full cursor-pointer flex items-center justify-center"
+          style={{ width: 36, height: 36, background: "rgba(255,255,255,0.7)", boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}
           aria-label="Next product"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={CHARCOAL} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5l7 7-7 7"/></svg>
