@@ -496,10 +496,10 @@ export function Treatments() {
         </div>
 
         <div className="flex justify-center gap-3 flex-wrap mt-8">
-          {["Massages", "Facials", "Exfoliation"].map((label) => (
+          {["Massages", "Facials", "Add-Ons", "Exfoliation"].map((label) => (
             <a
               key={label}
-              href={`#${label.toLowerCase()}`}
+              href={`#${label.toLowerCase().replace('-', '')}`}
               className="transition-colors"
               style={{
                 border: "1px solid rgba(196,146,155,0.3)",
@@ -572,8 +572,7 @@ export function Treatments() {
             <div className="mt-6">
               <p style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgba(44,44,44,0.25)", fontFamily: "'Inter', sans-serif" }} className="uppercase mb-3">FACIAL MENU</p>
               <MenuRow name="Dermaplane Glow n Go" duration="60 min" price="$179" />
-              <MenuRow name="Holistic Facial & Foot Ritual" duration="75 min" price="$189" />
-              <MenuRow name="Dermaplane Super Glow" duration="90 min" price="$229" />
+              <MenuRow name="Holistic Reflexology Facial" duration="75 min" price="$159" />
             </div>
             <p className="mt-4" style={{ fontSize: "12px", fontStyle: "italic", color: "rgba(44,44,44,0.4)", fontFamily: "'Cormorant Garamond', serif" }}>
               All facials use Rosactive Phytoceutical products — see below.
@@ -582,6 +581,116 @@ export function Treatments() {
               <PillButton>Book a Facial</PillButton>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 3B: ADD-ON SPA SERVICES ── */}
+      <section id="addons" style={{ borderTop: "1px solid rgba(196,146,155,0.12)", padding: "80px 0", background: "#FDF8F4" }}>
+        <div className="max-w-5xl mx-auto px-6">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <p style={{ fontSize: "11px", letterSpacing: "0.3em", color: ROSE, fontFamily: "'Inter', sans-serif" }} className="uppercase mb-3">
+              ENHANCE YOUR EXPERIENCE
+            </p>
+            <h2 style={{ fontSize: "clamp(32px, 4vw, 44px)", fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, color: CHARCOAL }}>
+              Add-On Spa Services
+            </h2>
+            <p className="mt-4 mx-auto" style={{ maxWidth: "500px", fontSize: "14px", color: "rgba(44,44,44,0.55)", lineHeight: 1.7, fontFamily: "'Inter', sans-serif", fontWeight: 300 }}>
+              Add a little extra bliss to any treatment. Each add-on is designed to complement your session and elevate your experience.
+            </p>
+          </div>
+
+          {/* Add-on cards grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {[
+              {
+                title: "Eye Revival",
+                duration: "20 mins",
+                price: "$25",
+                description: "Refresh tired, puffy eyes with a soothing lymphatic massage, eye mask, warm compress and hydrating eye cream.",
+              },
+              {
+                title: "Heavenly Scalp Melt",
+                duration: "15 mins",
+                price: "$25",
+                description: "A blissful scalp massage for heavenly relaxation. The perfect addition to any facial or massage.",
+              },
+              {
+                title: "Facial Reflexology Massage",
+                duration: "25 mins",
+                price: "$45",
+                description: "A soothing facial reflexology massage performed with a comforting, high-quality skin balm to melt tension, lift the skin, and promote a radiant glow. Completed with soothing hot towels.",
+              },
+              {
+                title: "Heavenly Face, Neck, Shoulder & Scalp Melt",
+                duration: "30 mins",
+                price: "$65",
+                description: "A deeply indulgent ritual designed to melt away tension from the face, neck, shoulders, and scalp. Combines a blissful scalp massage with facial reflexology using a luxurious skin-loving balm. Finished with warm towel therapy.",
+              },
+              {
+                title: "Sole Revival Foot Ritual",
+                duration: "",
+                price: "$50",
+                description: "Feet are submerged in a warm soothing infusion of botanicals, flower petals, Epsom salts, and aromatherapy oils, then gently scrubbed with sugar crystals to soften rough skin. Mineral-rich salts ease tension and stress — feet feel refreshed, relaxed and renewed.",
+                note: "Does not include gel polish or a full pedicure service.",
+              },
+              {
+                title: "Back Scrub & Hot Towel",
+                duration: "15 mins",
+                price: "$25",
+                description: "Invigorating sugar crystals exfoliate those hard-to-reach areas on your back, finished with hot towels for a smooth, refreshed, divine feel.",
+                note: "Add to any massage as a pre-treatment ritual.",
+              },
+            ].map((addon) => (
+              <div
+                key={addon.title}
+                style={{
+                  border: "0.5px solid rgba(196,146,155,0.18)",
+                  borderRadius: "14px",
+                  padding: "28px 24px",
+                  background: "rgba(253,248,244,0.8)",
+                  boxShadow: "0 4px 20px rgba(196,146,155,0.06)",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                {/* Price badge */}
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <h3 style={{ fontSize: "16px", fontFamily: "'Cormorant Garamond', serif", fontWeight: 500, color: CHARCOAL, lineHeight: 1.3 }}>
+                    {addon.title}
+                  </h3>
+                  <span
+                    style={{
+                      fontSize: "15px",
+                      fontWeight: 500,
+                      color: ROSE,
+                      fontFamily: "'Inter', sans-serif",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {addon.price}
+                  </span>
+                </div>
+                {addon.duration && (
+                  <p style={{ fontSize: "11px", letterSpacing: "0.12em", color: "rgba(44,44,44,0.3)", fontFamily: "'Inter', sans-serif", marginBottom: "10px" }} className="uppercase">
+                    {addon.duration}
+                  </p>
+                )}
+                <p style={{ fontSize: "13px", color: "rgba(44,44,44,0.55)", lineHeight: 1.65, fontFamily: "'Inter', sans-serif", fontWeight: 300, flexGrow: 1 }}>
+                  {addon.description}
+                </p>
+                {addon.note && (
+                  <p className="mt-3" style={{ fontSize: "11px", fontStyle: "italic", color: "rgba(44,44,44,0.35)", fontFamily: "'Cormorant Garamond', serif" }}>
+                    {addon.note}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center mt-10" style={{ fontSize: "13px", color: "rgba(44,44,44,0.4)", fontFamily: "'Inter', sans-serif", fontWeight: 300 }}>
+            Add-ons can be combined with any facial or massage treatment. Mention your selections when booking.
+          </p>
         </div>
       </section>
 
