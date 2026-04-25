@@ -575,7 +575,7 @@ export function Treatments() {
               <MenuRow name="Dermaplane Glow n Go" duration="60 min" price="$179" />
               <MenuRow name="Holistic Reflexology Facial" duration="75 min" price="$159" />
             </div>
-            <p className="mt-4" style={{ fontSize: "13px", fontStyle: "italic", color: "rgba(44,44,44,0.5)", fontFamily: "'Cormorant Garamond', serif" }}>
+            <p className="mt-4" style={{ fontSize: "14.5px", fontStyle: "italic", color: "rgba(44,44,44,0.7)", lineHeight: 1.6, fontFamily: "'Cormorant Garamond', serif" }}>
               All facials use Rosactive Phytoceutical skincare from Italy — see below.
             </p>
             <div className="mt-6">
@@ -646,10 +646,10 @@ export function Treatments() {
                 note: "Add to any massage as a pre-treatment ritual.",
               },
               {
-                title: "Full Body Sugar Polish",
-                duration: "30 mins",
-                price: "$70",
-                description: "A divine full-body sugar exfoliation ritual that gently buffs away dullness from head to toe, leaving skin softer, smoother, and beautifully glowing. Finished with warm towels and a light hydrating veil.",
+                title: "Full Body Glow Ritual",
+                duration: "40 mins",
+                price: "$60",
+                description: "Dry body brushing, warm oil & salt exfoliation to smooth and revitalise the skin. Finished with hot towels.",
                 note: "Add to any massage or facial for the ultimate top-to-toe glow.",
               },
             ].map((addon) => (
@@ -669,12 +669,13 @@ export function Treatments() {
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <h3
                     style={{
-                      fontSize: "15px",
+                      fontSize: "16px",
                       fontFamily: "'Inter', sans-serif",
                       fontWeight: 600,
-                      letterSpacing: "-0.005em",
+                      letterSpacing: "0.04em",
+                      textTransform: "uppercase",
                       color: CHARCOAL,
-                      lineHeight: 1.25,
+                      lineHeight: 1.3,
                     }}
                   >
                     {addon.title}

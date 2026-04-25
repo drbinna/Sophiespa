@@ -202,11 +202,11 @@ const ADDONS: AddOn[] = [
     description: "Sugar exfoliation on the back, finished with hot towels.",
   },
   {
-    id: "full-body-sugar-polish",
-    name: "Full Body Sugar Polish",
-    duration: "30 mins",
-    price: "$70",
-    description: "Full-body sugar exfoliation — softer, smoother, glowing skin from head to toe.",
+    id: "full-body-glow-ritual",
+    name: "Full Body Glow Ritual",
+    duration: "40 mins",
+    price: "$60",
+    description: "Dry body brushing, warm oil & salt exfoliation to smooth and revitalise the skin. Finished with hot towels.",
   },
 ];
 
