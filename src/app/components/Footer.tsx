@@ -53,8 +53,22 @@ export function Footer() {
               Contact
             </p>
             <div className="space-y-2 font-['Inter'] text-white/50" style={{ fontSize: "0.85rem", fontWeight: 300 }}>
-              <p>(027) 251-6985</p>
-              <p>sophiespa888@gmail.com</p>
+              <p>
+                <a
+                  href="tel:+64272516985"
+                  className="text-white/50 hover:text-white transition-colors no-underline"
+                >
+                  (027) 251-6985
+                </a>
+              </p>
+              <p>
+                <a
+                  href="mailto:sophiespa888@gmail.com?subject=Booking%20enquiry"
+                  className="text-white/50 hover:text-white transition-colors no-underline"
+                >
+                  sophiespa888@gmail.com
+                </a>
+              </p>
               <p>Auckland, New Zealand</p>
             </div>
           </div>

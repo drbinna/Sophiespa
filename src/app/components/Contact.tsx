@@ -5,7 +5,7 @@ import { useScrollReveal } from "./useScrollReveal";
 
 const contactCards = [
   { icon: Phone, label: "Call", value: "(027) 251-6985", href: "tel:+64272516985" },
-  { icon: Mail, label: "Email", value: "sophiespa888@gmail.com", href: "mailto:sophiespa888@gmail.com" },
+  { icon: Mail, label: "Email", value: "sophiespa888@gmail.com", href: "mailto:sophiespa888@gmail.com?subject=Booking%20enquiry" },
   { icon: MapPin, label: "Service Area", value: "Greater Auckland" },
 ];
 

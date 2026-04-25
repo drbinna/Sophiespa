@@ -22,9 +22,18 @@ const ROSE = "#C4929B";
 const CHARCOAL = "#2C2C2C";
 
 /* ─── Reusable pill button ─── */
-function PillButton({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+function PillButton({
+  children,
+  onClick,
+  className = "",
+}: {
+  children: React.ReactNode;
+  onClick?: () => void;
+  className?: string;
+}) {
   return (
     <button
+      onClick={onClick}
       className={`px-8 py-3 rounded-full text-white cursor-pointer transition-all hover:brightness-110 ${className}`}
       style={{
         background: ROSE,
@@ -39,13 +48,31 @@ function PillButton({ children, className = "" }: { children: React.ReactNode; c
   );
 }
 
+// Helper used by buttons that should open the booking modal with optional preselect.
+function openBooking(detail?: {
+  serviceId?: string;
+  category?: "Massage" | "Facial" | "Body" | "Other";
+  addOnIds?: string[];
+  step?: 1 | 2 | 3 | 4;
+}) {
+  window.dispatchEvent(new CustomEvent("sophie:open-booking", { detail }));
+}
+
 /* ─── Menu row with dotted leader ─── */
-function MenuRow({ name, duration, price }: { name: string; duration: string; price: string }) {
-  return (
-    <div
-      className="flex items-baseline gap-2 py-2"
-      style={{ borderBottom: "1px solid rgba(44,44,44,0.06)" }}
-    >
+function MenuRow({
+  name,
+  duration,
+  price,
+  serviceId,
+}: {
+  name: string;
+  duration: string;
+  price: string;
+  serviceId?: string;
+}) {
+  const clickable = Boolean(serviceId);
+  const inner = (
+    <>
       <span className="shrink-0" style={{ fontSize: "15px", fontWeight: 500, color: CHARCOAL, fontFamily: "'Inter', sans-serif" }}>
         {name}
       </span>
@@ -56,6 +83,29 @@ function MenuRow({ name, duration, price }: { name: string; duration: string; pr
       <span className="shrink-0" style={{ fontSize: "15px", fontWeight: 500, color: ROSE, fontFamily: "'Inter', sans-serif" }}>
         {price}
       </span>
+    </>
+  );
+
+  if (clickable) {
+    return (
+      <button
+        type="button"
+        onClick={() => openBooking({ serviceId })}
+        className="w-full flex items-baseline gap-2 py-2 text-left bg-transparent border-0 cursor-pointer transition-colors hover:bg-[rgba(196,146,155,0.04)]"
+        style={{ borderBottom: "1px solid rgba(44,44,44,0.06)" }}
+        aria-label={`Book ${name}`}
+      >
+        {inner}
+      </button>
+    );
+  }
+
+  return (
+    <div
+      className="flex items-baseline gap-2 py-2"
+      style={{ borderBottom: "1px solid rgba(44,44,44,0.06)" }}
+    >
+      {inner}
     </div>
   );
 }
@@ -537,15 +587,15 @@ export function Treatments() {
             </p>
             <div className="mt-6">
               <p style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgba(44,44,44,0.25)", fontFamily: "'Inter', sans-serif" }} className="uppercase mb-3">MENU</p>
-              <MenuRow name="Relaxation Massage" duration="60 / 90 / 120 min" price="$170 / $220 / $280" />
-              <MenuRow name="Swedish Remedial Massage" duration="60 / 90 / 120 min" price="$170 / $220 / $280" />
-              <MenuRow name="Deep Tissue & Sports Massage" duration="60 / 90 / 120 min" price="$170 / $220 / $280" />
+              <MenuRow serviceId="relaxation-massage" name="Relaxation Massage" duration="60 / 90 / 120 min" price="$170 / $220 / $280" />
+              <MenuRow serviceId="swedish-remedial" name="Swedish Remedial Massage" duration="60 / 90 / 120 min" price="$170 / $220 / $280" />
+              <MenuRow serviceId="deep-tissue-sports" name="Deep Tissue & Sports Massage" duration="60 / 90 / 120 min" price="$170 / $220 / $280" />
             </div>
             <p className="mt-4" style={{ fontSize: "13px", fontStyle: "italic", color: "rgba(44,44,44,0.5)", fontFamily: "'Cormorant Garamond', serif" }}>
               Choose 60, 90 or 120 minutes — pricing scales with the time chosen.
             </p>
             <div className="mt-6">
-              <PillButton>Book a Massage</PillButton>
+              <PillButton onClick={() => openBooking({ category: "Massage" })}>Book a Massage</PillButton>
             </div>
           </div>
           <div className="order-1 md:order-2">
@@ -572,14 +622,14 @@ export function Treatments() {
             </p>
             <div className="mt-6">
               <p style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgba(44,44,44,0.25)", fontFamily: "'Inter', sans-serif" }} className="uppercase mb-3">MENU</p>
-              <MenuRow name="Dermaplane Glow n Go" duration="60 min" price="$179" />
-              <MenuRow name="Holistic Reflexology Facial" duration="75 min" price="$159" />
+              <MenuRow serviceId="dermaplane-go" name="Dermaplane Glow n Go" duration="60 min" price="$179" />
+              <MenuRow serviceId="holistic-reflexology" name="Holistic Reflexology Facial" duration="75 min" price="$159" />
             </div>
             <p className="mt-4" style={{ fontSize: "14.5px", fontStyle: "italic", color: "rgba(44,44,44,0.7)", lineHeight: 1.6, fontFamily: "'Cormorant Garamond', serif" }}>
               All facials use Rosactive Phytoceutical skincare from Italy — see below.
             </p>
             <div className="mt-6">
-              <PillButton>Book a Facial</PillButton>
+              <PillButton onClick={() => openBooking({ category: "Facial" })}>Book a Facial</PillButton>
             </div>
           </div>
         </div>
@@ -608,30 +658,35 @@ export function Treatments() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {[
               {
+                id: "eye-revival",
                 title: "Eye Revival",
                 duration: "20 mins",
                 price: "$25",
                 description: "Refresh tired, puffy eyes with a soothing lymphatic massage, eye mask, warm compress and hydrating eye cream.",
               },
               {
+                id: "scalp-melt",
                 title: "Heavenly Scalp Melt",
                 duration: "15 mins",
                 price: "$25",
                 description: "A blissful scalp massage for heavenly relaxation. The perfect addition to any facial or massage.",
               },
               {
+                id: "facial-reflexology",
                 title: "Facial Reflexology Massage",
                 duration: "25 mins",
                 price: "$45",
                 description: "A soothing facial reflexology massage performed with a comforting, high-quality skin balm to melt tension, lift the skin, and promote a radiant glow. Completed with soothing hot towels.",
               },
               {
+                id: "face-neck-shoulder-scalp",
                 title: "Heavenly Face, Neck, Shoulder & Scalp Melt",
                 duration: "30 mins",
                 price: "$65",
                 description: "A deeply indulgent ritual designed to melt away tension from the face, neck, shoulders, and scalp. Combines a blissful scalp massage with facial reflexology using a luxurious skin-loving balm. Finished with warm towel therapy.",
               },
               {
+                id: "foot-ritual",
                 title: "Sole Revival Foot Ritual",
                 duration: "",
                 price: "$50",
@@ -639,6 +694,7 @@ export function Treatments() {
                 note: "Does not include gel polish or a full pedicure service.",
               },
               {
+                id: "back-scrub",
                 title: "Back Scrub & Hot Towel",
                 duration: "15 mins",
                 price: "$25",
@@ -646,6 +702,7 @@ export function Treatments() {
                 note: "Add to any massage as a pre-treatment ritual.",
               },
               {
+                id: "full-body-glow-ritual",
                 title: "Full Body Glow Ritual",
                 duration: "40 mins",
                 price: "$60",
@@ -705,6 +762,26 @@ export function Treatments() {
                     {addon.note}
                   </p>
                 )}
+                <button
+                  type="button"
+                  onClick={() => openBooking({ addOnIds: [addon.id] })}
+                  className="mt-3 self-start cursor-pointer transition-all duration-200 hover:bg-[rgba(196,146,155,0.08)]"
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: 600,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    color: ROSE,
+                    fontFamily: "'Inter', sans-serif",
+                    background: "transparent",
+                    border: `1px solid ${ROSE}`,
+                    borderRadius: "999px",
+                    padding: "7px 14px",
+                  }}
+                  aria-label={`Add ${addon.title} to your booking`}
+                >
+                  + Add to booking
+                </button>
               </div>
             ))}
           </div>
@@ -730,15 +807,15 @@ export function Treatments() {
             </p>
             <div className="mt-6">
               <p style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgba(44,44,44,0.25)", fontFamily: "'Inter', sans-serif" }} className="uppercase mb-3">MENU</p>
-              <MenuRow name="Botanical Body Scrub" duration="40 min" price="$70" />
-              <MenuRow name="Salt & Oil Revival" duration="55 min" price="$90" />
-              <MenuRow name="Gentle Glow Polish" duration="60 min" price="$85" />
+              <MenuRow serviceId="botanical-scrub" name="Botanical Body Scrub" duration="40 min" price="$70" />
+              <MenuRow serviceId="salt-oil-revival" name="Salt & Oil Revival" duration="55 min" price="$90" />
+              <MenuRow serviceId="gentle-polish" name="Gentle Glow Polish" duration="60 min" price="$85" />
             </div>
             <p className="mt-4" style={{ fontSize: "13px", fontStyle: "italic", color: "rgba(44,44,44,0.5)", fontFamily: "'Cormorant Garamond', serif" }}>
               Every product is eco-friendly and honours the planet.
             </p>
             <div className="mt-6">
-              <PillButton>Book an Exfoliation</PillButton>
+              <PillButton onClick={() => openBooking({ category: "Body" })}>Book an Exfoliation</PillButton>
             </div>
           </div>
           <div className="order-1 md:order-2">
@@ -759,7 +836,7 @@ export function Treatments() {
           Book a free consultation and let Sophie guide you to the perfect experience.
         </p>
         <div className="mt-6">
-          <PillButton>Book a Consultation</PillButton>
+          <PillButton onClick={() => openBooking({ serviceId: "not-sure" })}>Book a Consultation</PillButton>
         </div>
         <a
           href="tel:0272516985"

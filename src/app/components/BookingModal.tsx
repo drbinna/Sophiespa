@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { X, ArrowLeft, Check, Calendar as CalendarIcon } from "lucide-react";
 import { submitForm } from "../lib/submitForm";
 
@@ -6,10 +6,13 @@ import { submitForm } from "../lib/submitForm";
  * Dispatch this anywhere to open the booking modal:
  *   window.dispatchEvent(new CustomEvent("sophie:open-booking"))
  *
- * Optional service preselect:
- *   window.dispatchEvent(new CustomEvent("sophie:open-booking", {
- *     detail: { serviceId: "hot-stone" }
- *   }))
+ * Optional preselect via event detail:
+ *   { serviceId: "swedish-remedial" }   // pre-pick a specific service
+ *   { category: "Massage" }             // scroll Step 1 to a category
+ *   { addOnIds: ["eye-revival"] }       // pre-tick add-ons
+ *   { step: 3 }                          // jump straight to a step (only
+ *                                        //   honoured when prerequisites
+ *                                        //   like serviceId are also set)
  */
 export const OPEN_BOOKING_EVENT = "sophie:open-booking";
 
@@ -59,16 +62,6 @@ const SERVICES: Service[] = [
     description: "Firm deep pressure for tight muscles, trigger points, and sports recovery.",
     thumb: "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774779685/u5442978949_Sports_massage_--raw_--stylize_0_--v_7_a821c5e2-6d1e-41ba-ad4e-e8717c8bb2d3_0_xadqch.png",
   },
-  {
-    id: "hot-stone",
-    name: "Hot Stone Ceremony",
-    category: "Massage",
-    duration: "50 min",
-    durationMinutes: 50,
-    price: "$60",
-    description: "Warmed basalt stones melt deep, chronic tension.",
-    thumb: "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774175780/Gemini_Generated_Image_3sg8t13sg8t13sg8_hrh7ks.png",
-  },
   // Facial
   {
     id: "dermaplane-go",
@@ -81,24 +74,14 @@ const SERVICES: Service[] = [
     thumb: "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774176768/facial_photo_no_watermark_dzshxv.png",
   },
   {
-    id: "holistic-foot",
-    name: "Holistic Facial & Foot Ritual",
+    id: "holistic-reflexology",
+    name: "Holistic Reflexology Facial",
     category: "Facial",
     duration: "75 min",
     durationMinutes: 75,
-    price: "$189",
-    description: "A grounding facial paired with a restorative foot ritual.",
+    price: "$159",
+    description: "A grounding facial paired with restorative reflexology — calms the nervous system as it nourishes the skin.",
     thumb: "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774779362/sophie-spa-massage-facial-touch_gsrage.jpg",
-  },
-  {
-    id: "dermaplane-super",
-    name: "Dermaplane Super Glow",
-    category: "Facial",
-    duration: "90 min",
-    durationMinutes: 90,
-    price: "$229",
-    description: "The full facial experience — dermaplaning, mask, massage, finish.",
-    thumb: "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774176768/facial_photo_no_watermark_dzshxv.png",
   },
   // Body
   {
@@ -182,7 +165,7 @@ const ADDONS: AddOn[] = [
   },
   {
     id: "face-neck-shoulder-scalp",
-    name: "Face, Neck, Shoulder & Scalp Melt",
+    name: "Heavenly Face, Neck, Shoulder & Scalp Melt",
     duration: "30 mins",
     price: "$65",
     description: "A deeply indulgent ritual melting tension from face, neck, shoulders, and scalp.",
@@ -219,8 +202,9 @@ export function BookingModal() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // Step 1
+  // Step 1 — service & optional category to scroll to
   const [serviceId, setServiceId] = useState<string>("");
+  const [scrollToCategory, setScrollToCategory] = useState<Service["category"] | null>(null);
   // Step 2
   const [preferredDate, setPreferredDate] = useState("");
   const [timeWindow, setTimeWindow] = useState<string>("morning");
@@ -258,12 +242,37 @@ export function BookingModal() {
 
   useEffect(() => {
     const handler = (e: Event) => {
-      const detail = (e as CustomEvent<{ serviceId?: string }>).detail;
+      const detail = (e as CustomEvent<{
+        serviceId?: string;
+        category?: Service["category"];
+        addOnIds?: string[];
+        step?: Step;
+      }>).detail;
+
+      let resolvedServiceId = "";
       if (detail?.serviceId && SERVICES.some((s) => s.id === detail.serviceId)) {
-        setServiceId(detail.serviceId);
+        resolvedServiceId = detail.serviceId;
+        setServiceId(resolvedServiceId);
       }
+
+      // Pre-tick any requested add-ons that exist in the catalogue
+      if (detail?.addOnIds?.length) {
+        const valid = detail.addOnIds.filter((id) => ADDONS.some((a) => a.id === id));
+        if (valid.length) setAddOnIds(valid);
+      }
+
+      // Remember a category so Step 1 can scroll to it once it renders
+      setScrollToCategory(detail?.category ?? null);
+
+      // Decide which step to land on. Default to Step 1.
+      // Only honour an explicit step jump when the prerequisites are met
+      // (e.g. don't drop someone on Step 3 with no service chosen).
+      let targetStep: Step = 1;
+      if (detail?.step === 3 && resolvedServiceId) targetStep = 3;
+      else if (detail?.step === 2 && resolvedServiceId) targetStep = 2;
+
       setOpen(true);
-      setStep(1);
+      setStep(targetStep);
       setStatus("idle");
       setErrorMsg(null);
     };
@@ -281,6 +290,7 @@ export function BookingModal() {
   const reset = () => {
     setStep(1);
     setServiceId("");
+    setScrollToCategory(null);
     setPreferredDate("");
     setTimeWindow("morning");
     setAddOnIds([]);
@@ -407,6 +417,7 @@ export function BookingModal() {
               <ServiceStep
                 selectedId={serviceId}
                 onSelect={(id) => setServiceId(id)}
+                scrollToCategory={scrollToCategory}
               />
             )}
 
@@ -564,9 +575,11 @@ function Header({ step }: { step: Step }) {
 function ServiceStep({
   selectedId,
   onSelect,
+  scrollToCategory,
 }: {
   selectedId: string;
   onSelect: (id: string) => void;
+  scrollToCategory?: Service["category"] | null;
 }) {
   const groups: { category: Service["category"]; items: Service[] }[] = [
     { category: "Massage", items: SERVICES.filter((s) => s.category === "Massage") },
@@ -575,10 +588,26 @@ function ServiceStep({
     { category: "Other",   items: SERVICES.filter((s) => s.category === "Other") },
   ];
 
+  // Refs to each category heading so we can scroll one into view
+  const categoryRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  useEffect(() => {
+    if (!scrollToCategory) return;
+    // Wait one frame so the modal layout has settled before scrolling
+    const id = window.requestAnimationFrame(() => {
+      const el = categoryRefs.current[scrollToCategory];
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, [scrollToCategory]);
+
   return (
     <div className="flex flex-col gap-6">
       {groups.map((g) => (
-        <div key={g.category}>
+        <div
+          key={g.category}
+          ref={(el) => { categoryRefs.current[g.category] = el; }}
+        >
           <p
             className="font-['Inter'] text-[#2C2C2C]/40 mb-3"
             style={{ fontSize: "0.7rem", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase" }}
