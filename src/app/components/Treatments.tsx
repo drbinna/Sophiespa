@@ -71,16 +71,31 @@ function MenuRow({
   serviceId?: string;
 }) {
   const clickable = Boolean(serviceId);
+  // On mobile (<sm) the name takes its own line and the duration/dots/price
+  // wrap to the next line. On sm+ everything stays on one row, preserving the
+  // dotted-leader treatment that goes all the way across.
   const inner = (
     <>
-      <span className="shrink-0" style={{ fontSize: "15px", fontWeight: 500, color: CHARCOAL, fontFamily: "'Inter', sans-serif" }}>
+      <span
+        className="w-full sm:w-auto sm:shrink-0"
+        style={{ fontSize: "15px", fontWeight: 500, color: CHARCOAL, fontFamily: "'Inter', sans-serif" }}
+      >
         {name}
       </span>
-      <span className="shrink-0" style={{ fontSize: "12px", color: `rgba(44,44,44,0.4)`, fontFamily: "'Inter', sans-serif" }}>
-        · {duration}
+      <span
+        className="shrink-0"
+        style={{ fontSize: "12px", color: `rgba(44,44,44,0.4)`, fontFamily: "'Inter', sans-serif" }}
+      >
+        <span className="hidden sm:inline">· </span>{duration}
       </span>
-      <span className="flex-1 border-b border-dotted" style={{ borderColor: "rgba(44,44,44,0.2)", marginBottom: "4px" }} />
-      <span className="shrink-0" style={{ fontSize: "15px", fontWeight: 500, color: ROSE, fontFamily: "'Inter', sans-serif" }}>
+      <span
+        className="flex-1 border-b border-dotted"
+        style={{ borderColor: "rgba(44,44,44,0.2)", marginBottom: "4px" }}
+      />
+      <span
+        className="shrink-0"
+        style={{ fontSize: "15px", fontWeight: 500, color: ROSE, fontFamily: "'Inter', sans-serif" }}
+      >
         {price}
       </span>
     </>
@@ -91,7 +106,7 @@ function MenuRow({
       <button
         type="button"
         onClick={() => openBooking({ serviceId })}
-        className="w-full flex items-baseline gap-2 py-2 text-left bg-transparent border-0 cursor-pointer transition-colors hover:bg-[rgba(196,146,155,0.04)]"
+        className="w-full flex flex-wrap items-baseline gap-x-2 gap-y-1 py-2 text-left bg-transparent border-0 cursor-pointer transition-colors hover:bg-[rgba(196,146,155,0.04)]"
         style={{ borderBottom: "1px solid rgba(44,44,44,0.06)" }}
         aria-label={`Book ${name}`}
       >
@@ -102,7 +117,7 @@ function MenuRow({
 
   return (
     <div
-      className="flex items-baseline gap-2 py-2"
+      className="flex flex-wrap items-baseline gap-x-2 gap-y-1 py-2"
       style={{ borderBottom: "1px solid rgba(44,44,44,0.06)" }}
     >
       {inner}
