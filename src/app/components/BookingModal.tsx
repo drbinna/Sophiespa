@@ -149,7 +149,68 @@ const TIME_WINDOWS = [
   { value: "evening",   label: "Evening",   sublabel: "4pm – 7pm",  startHour: 17 },
 ];
 
-type Step = 1 | 2 | 3;
+// ——— Add-on catalogue (mirrors the Treatments page) ———
+type AddOn = {
+  id: string;
+  name: string;
+  duration: string;
+  price: string;
+  description: string;
+};
+
+const ADDONS: AddOn[] = [
+  {
+    id: "eye-revival",
+    name: "Eye Revival",
+    duration: "20 mins",
+    price: "$25",
+    description: "Soothing lymphatic massage, eye mask, warm compress and hydrating eye cream.",
+  },
+  {
+    id: "scalp-melt",
+    name: "Heavenly Scalp Melt",
+    duration: "15 mins",
+    price: "$25",
+    description: "A blissful scalp massage for heavenly relaxation.",
+  },
+  {
+    id: "facial-reflexology",
+    name: "Facial Reflexology Massage",
+    duration: "25 mins",
+    price: "$45",
+    description: "Facial reflexology with a high-quality skin balm — melts tension and promotes a radiant glow.",
+  },
+  {
+    id: "face-neck-shoulder-scalp",
+    name: "Face, Neck, Shoulder & Scalp Melt",
+    duration: "30 mins",
+    price: "$65",
+    description: "A deeply indulgent ritual melting tension from face, neck, shoulders, and scalp.",
+  },
+  {
+    id: "foot-ritual",
+    name: "Sole Revival Foot Ritual",
+    duration: "—",
+    price: "$50",
+    description: "Warm botanical foot soak, sugar scrub and mineral salts to leave feet refreshed.",
+  },
+  {
+    id: "back-scrub",
+    name: "Back Scrub & Hot Towel",
+    duration: "15 mins",
+    price: "$25",
+    description: "Sugar exfoliation on the back, finished with hot towels.",
+  },
+  {
+    id: "full-body-sugar-polish",
+    name: "Full Body Sugar Polish",
+    duration: "30 mins",
+    price: "$70",
+    description: "Full-body sugar exfoliation — softer, smoother, glowing skin from head to toe.",
+  },
+];
+
+type Step = 1 | 2 | 3 | 4;
 type Status = "idle" | "submitting" | "success" | "error";
 
 export function BookingModal() {
@@ -163,7 +224,9 @@ export function BookingModal() {
   // Step 2
   const [preferredDate, setPreferredDate] = useState("");
   const [timeWindow, setTimeWindow] = useState<string>("morning");
-  // Step 3
+  // Step 3 — Add-ons (optional)
+  const [addOnIds, setAddOnIds] = useState<string[]>([]);
+  // Step 4
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -181,6 +244,7 @@ export function BookingModal() {
     name: string;
     phone: string;
     email: string;
+    addOns: AddOn[];
   } | null>(null);
 
   const selectedService = useMemo(
@@ -219,6 +283,7 @@ export function BookingModal() {
     setServiceId("");
     setPreferredDate("");
     setTimeWindow("morning");
+    setAddOnIds([]);
     setName("");
     setPhone("");
     setEmail("");
@@ -240,11 +305,23 @@ export function BookingModal() {
 
   const canAdvanceFrom1 = Boolean(selectedService);
   const canAdvanceFrom2 = Boolean(preferredDate && timeWindow);
+  const canAdvanceFrom3 = true; // Add-ons are optional, can always continue
   const canSubmit =
     Boolean(name.trim()) &&
     Boolean(phone.trim()) &&
     (!bookingForSomeoneElse || recipientName.trim().length > 0) &&
     status !== "submitting";
+
+  const selectedAddOns = useMemo(
+    () => ADDONS.filter((a) => addOnIds.includes(a.id)),
+    [addOnIds]
+  );
+
+  const toggleAddOn = (id: string) => {
+    setAddOnIds((curr) =>
+      curr.includes(id) ? curr.filter((x) => x !== id) : [...curr, id]
+    );
+  };
 
   const submit = async () => {
     if (honeypot) {
@@ -254,6 +331,7 @@ export function BookingModal() {
         date: preferredDate,
         timeWindow,
         name, phone, email,
+        addOns: selectedAddOns,
       });
       setStatus("success");
       return;
@@ -273,6 +351,8 @@ export function BookingModal() {
         timeWindow,
         timeWindowLabel: selectedWindow.label,
         timeWindowSublabel: selectedWindow.sublabel,
+        addOns: selectedAddOns.map((a) => `${a.name} (${a.price})`).join(", "),
+        addOnIds: addOnIds.join(","),
         name: name.trim(),
         phone: phone.trim(),
         email: email.trim(),
@@ -285,6 +365,7 @@ export function BookingModal() {
         date: preferredDate,
         timeWindow,
         name, phone, email,
+        addOns: selectedAddOns,
       });
       setStatus("success");
     } catch (err) {
@@ -341,6 +422,13 @@ export function BookingModal() {
             )}
 
             {step === 3 && (
+              <AddOnStep
+                selectedIds={addOnIds}
+                onToggle={toggleAddOn}
+              />
+            )}
+
+            {step === 4 && (
               <ContactStep
                 name={name} onName={setName}
                 phone={phone} onPhone={setPhone}
@@ -375,21 +463,38 @@ export function BookingModal() {
                 )}
               </div>
 
-              {step < 3 ? (
-                <button
-                  onClick={() => setStep((s) => (s + 1) as Step)}
-                  disabled={step === 1 ? !canAdvanceFrom1 : !canAdvanceFrom2}
-                  className="px-8 py-3 rounded-full text-white cursor-pointer transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
-                  style={{
-                    fontSize: "0.9rem",
-                    fontWeight: 500,
-                    letterSpacing: "0.05em",
-                    backgroundColor: "#C4929B",
-                    boxShadow: "0 4px 16px rgba(196, 146, 155, 0.3)",
-                  }}
-                >
-                  Continue →
-                </button>
+              {step < 4 ? (
+                <div className="flex items-center gap-3">
+                  {step === 3 && addOnIds.length === 0 && (
+                    <button
+                      onClick={() => setStep(4)}
+                      className="font-['Inter'] text-[#2C2C2C]/55 hover:text-[#2C2C2C] bg-transparent border-none cursor-pointer underline px-2 py-1"
+                      style={{ fontSize: "0.85rem", textUnderlineOffset: "3px" }}
+                    >
+                      Skip — no add-ons
+                    </button>
+                  )}
+                  <button
+                    onClick={() => setStep((s) => (s + 1) as Step)}
+                    disabled={
+                      step === 1 ? !canAdvanceFrom1
+                      : step === 2 ? !canAdvanceFrom2
+                      : !canAdvanceFrom3
+                    }
+                    className="px-8 py-3 rounded-full text-white cursor-pointer transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                    style={{
+                      fontSize: "0.9rem",
+                      fontWeight: 500,
+                      letterSpacing: "0.05em",
+                      backgroundColor: "#C4929B",
+                      boxShadow: "0 4px 16px rgba(196, 146, 155, 0.3)",
+                    }}
+                  >
+                    {step === 3 && addOnIds.length > 0
+                      ? `Continue with ${addOnIds.length} add-on${addOnIds.length > 1 ? "s" : ""} →`
+                      : "Continue →"}
+                  </button>
+                </div>
               ) : (
                 <button
                   onClick={submit}
@@ -420,9 +525,10 @@ export function BookingModal() {
 
 function Header({ step }: { step: Step }) {
   const titles: Record<Step, { eyebrow: string; heading: string }> = {
-    1: { eyebrow: "Book your escape · Step 1 of 3", heading: "What would you like?" },
-    2: { eyebrow: "Book your escape · Step 2 of 3", heading: "When works for you?" },
-    3: { eyebrow: "Book your escape · Step 3 of 3", heading: "How do we reach you?" },
+    1: { eyebrow: "Book your escape · Step 1 of 4", heading: "What would you like?" },
+    2: { eyebrow: "Book your escape · Step 2 of 4", heading: "When works for you?" },
+    3: { eyebrow: "Book your escape · Step 3 of 4", heading: "Add a little extra bliss?" },
+    4: { eyebrow: "Book your escape · Step 4 of 4", heading: "How do we reach you?" },
   };
   return (
     <>
@@ -439,8 +545,8 @@ function Header({ step }: { step: Step }) {
         {titles[step].heading}
       </h3>
       {/* Progress dots */}
-      <div className="flex items-center gap-2 mb-8" aria-label={`Step ${step} of 3`}>
-        {[1, 2, 3].map((n) => (
+      <div className="flex items-center gap-2 mb-8" aria-label={`Step ${step} of 4`}>
+        {[1, 2, 3, 4].map((n) => (
           <span
             key={n}
             className="h-[3px] rounded-full transition-all duration-500"
@@ -765,6 +871,123 @@ function ContactStep({
   );
 }
 
+// ———————————————————————————————————————————————————————————————
+// Step 3 — Add-on upsell
+// ———————————————————————————————————————————————————————————————
+function AddOnStep({
+  selectedIds,
+  onToggle,
+}: {
+  selectedIds: string[];
+  onToggle: (id: string) => void;
+}) {
+  const total = useMemo(() => {
+    return ADDONS.filter((a) => selectedIds.includes(a.id)).reduce((sum, a) => {
+      const num = parseInt(a.price.replace(/[^0-9]/g, ""), 10);
+      return Number.isNaN(num) ? sum : sum + num;
+    }, 0);
+  }, [selectedIds]);
+
+  return (
+    <div>
+      <p
+        className="font-['Cormorant_Garamond'] text-[#C4929B] mb-6 italic"
+        style={{ fontSize: "1.05rem", lineHeight: 1.5 }}
+      >
+        Many guests love to enhance their treatment with one of these little extras —
+        entirely optional, and yours to choose.
+      </p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+        {ADDONS.map((a) => {
+          const selected = selectedIds.includes(a.id);
+          return (
+            <button
+              key={a.id}
+              onClick={() => onToggle(a.id)}
+              aria-pressed={selected}
+              className="text-left bg-white border cursor-pointer transition-all duration-200 relative"
+              style={{
+                borderRadius: 10,
+                padding: "12px 14px",
+                paddingRight: 36,
+                borderColor: selected ? "#C4929B" : "rgba(196,146,155,0.15)",
+                boxShadow: selected ? "0 4px 16px rgba(196,146,155,0.18)" : "none",
+              }}
+            >
+              <div className="flex items-start justify-between gap-2 mb-1">
+                <p
+                  className="font-['Inter'] text-[#2C2C2C]"
+                  style={{
+                    fontSize: "0.875rem",
+                    fontWeight: 600,
+                    letterSpacing: "-0.005em",
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {a.name}
+                </p>
+                <span
+                  className="font-['Inter'] text-[#C4929B] shrink-0"
+                  style={{ fontSize: "0.85rem", fontWeight: 600, whiteSpace: "nowrap" }}
+                >
+                  +{a.price}
+                </span>
+              </div>
+              {a.duration && a.duration !== "—" && (
+                <p
+                  className="font-['Inter'] text-[#2C2C2C]/35 uppercase mb-1.5"
+                  style={{ fontSize: "0.625rem", letterSpacing: "0.12em" }}
+                >
+                  {a.duration}
+                </p>
+              )}
+              <p
+                className="font-['Inter'] text-[#2C2C2C]/55"
+                style={{ fontSize: "0.75rem", lineHeight: 1.5 }}
+              >
+                {a.description}
+              </p>
+              {selected && (
+                <span
+                  className="absolute top-3 right-3 w-5 h-5 rounded-full bg-[#C4929B] flex items-center justify-center"
+                  style={{ boxShadow: "0 2px 6px rgba(196,146,155,0.3)" }}
+                  aria-hidden="true"
+                >
+                  <Check size={11} className="text-white" strokeWidth={3} />
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+
+      {selectedIds.length > 0 && (
+        <div
+          className="mt-5 flex items-center justify-between rounded-lg px-4 py-3"
+          style={{
+            background: "rgba(196,146,155,0.08)",
+            border: "1px solid rgba(196,146,155,0.18)",
+          }}
+        >
+          <span
+            className="font-['Inter'] text-[#2C2C2C]/70"
+            style={{ fontSize: "0.8rem" }}
+          >
+            {selectedIds.length} add-on{selectedIds.length > 1 ? "s" : ""} selected
+          </span>
+          <span
+            className="font-['Inter'] text-[#C4929B]"
+            style={{ fontSize: "0.95rem", fontWeight: 600 }}
+          >
+            +${total}
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function SuccessScreen({
   snapshot,
   onClose,
@@ -776,6 +999,7 @@ function SuccessScreen({
     name: string;
     phone: string;
     email: string;
+    addOns: AddOn[];
   };
   onClose: () => void;
 }) {
@@ -830,6 +1054,29 @@ function SuccessScreen({
         )}
         {prettyDate && <Summary label="Date" value={prettyDate} />}
         <Summary label="Time" value={`${windowMeta.label} (${windowMeta.sublabel})`} />
+        {snapshot.addOns.length > 0 && (
+          <div
+            className="mt-2 pt-2"
+            style={{ borderTop: "1px solid rgba(196,146,155,0.12)" }}
+          >
+            <p
+              className="font-['Inter'] text-[#2C2C2C]/40 mb-1"
+              style={{ fontSize: "0.7rem", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase" }}
+            >
+              Add-ons
+            </p>
+            {snapshot.addOns.map((a) => (
+              <div key={a.id} className="flex justify-between gap-4 py-0.5">
+                <span className="font-['Inter'] text-[#2C2C2C]" style={{ fontSize: "0.85rem" }}>
+                  {a.name}
+                </span>
+                <span className="font-['Inter'] text-[#C4929B]" style={{ fontSize: "0.85rem", fontWeight: 500 }}>
+                  +{a.price}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <p

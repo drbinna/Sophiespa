@@ -43,17 +43,17 @@ function PillButton({ children, className = "" }: { children: React.ReactNode; c
 function MenuRow({ name, duration, price }: { name: string; duration: string; price: string }) {
   return (
     <div
-      className="flex items-baseline gap-2 py-3"
+      className="flex items-baseline gap-2 py-2"
       style={{ borderBottom: "1px solid rgba(44,44,44,0.06)" }}
     >
-      <span className="shrink-0" style={{ fontSize: "14px", fontWeight: 500, color: CHARCOAL, fontFamily: "'Inter', sans-serif" }}>
+      <span className="shrink-0" style={{ fontSize: "15px", fontWeight: 500, color: CHARCOAL, fontFamily: "'Inter', sans-serif" }}>
         {name}
       </span>
-      <span className="shrink-0" style={{ fontSize: "12px", color: `rgba(44,44,44,0.3)`, fontFamily: "'Inter', sans-serif" }}>
+      <span className="shrink-0" style={{ fontSize: "12px", color: `rgba(44,44,44,0.4)`, fontFamily: "'Inter', sans-serif" }}>
         · {duration}
       </span>
-      <span className="flex-1 border-b border-dotted" style={{ borderColor: "rgba(44,44,44,0.15)", marginBottom: "4px" }} />
-      <span className="shrink-0" style={{ fontSize: "14px", fontWeight: 500, color: ROSE, fontFamily: "'Inter', sans-serif" }}>
+      <span className="flex-1 border-b border-dotted" style={{ borderColor: "rgba(44,44,44,0.2)", marginBottom: "4px" }} />
+      <span className="shrink-0" style={{ fontSize: "15px", fontWeight: 500, color: ROSE, fontFamily: "'Inter', sans-serif" }}>
         {price}
       </span>
     </div>
@@ -527,10 +527,10 @@ export function Treatments() {
           <div className="order-2 md:order-1">
             <p style={{ fontSize: "11px", color: "rgba(44,44,44,0.25)", letterSpacing: "0.2em", fontFamily: "'Inter', sans-serif" }}>01</p>
             <h2 className="mt-2" style={{ fontSize: "clamp(36px, 4vw, 48px)", fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>Massages</h2>
-            <p className="mt-2 uppercase" style={{ fontSize: "13px", letterSpacing: "0.15em", color: ROSE, fontFamily: "'Inter', sans-serif" }}>
-              Tension Dissolved, Balance Restored
+            <p className="mt-3" style={{ fontSize: "16px", fontStyle: "italic", color: ROSE, fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
+              Tension dissolved, balance restored
             </p>
-            <p className="mt-4" style={{ fontSize: "14px", color: "rgba(44,44,44,0.6)", lineHeight: 1.7, maxWidth: "450px", fontFamily: "'Inter', sans-serif", fontWeight: 300 }}>
+            <p className="mt-4" style={{ fontSize: "15px", color: "rgba(44,44,44,0.7)", lineHeight: 1.7, maxWidth: "450px", fontFamily: "'Inter', sans-serif", fontWeight: 400 }}>
               Delivered with 19 years of intuitive expertise, our signature massage treatments melt
               stress from tired muscles, restore balance, and leave your body feeling completely
               renewed — in the comfort of your own home.
@@ -541,6 +541,9 @@ export function Treatments() {
               <MenuRow name="Swedish Remedial Massage" duration="60 / 90 / 120 min" price="$170 / $220 / $280" />
               <MenuRow name="Deep Tissue & Sports Massage" duration="60 / 90 / 120 min" price="$170 / $220 / $280" />
             </div>
+            <p className="mt-4" style={{ fontSize: "13px", fontStyle: "italic", color: "rgba(44,44,44,0.5)", fontFamily: "'Cormorant Garamond', serif" }}>
+              Choose 60, 90 or 120 minutes — pricing scales with the time chosen.
+            </p>
             <div className="mt-6">
               <PillButton>Book a Massage</PillButton>
             </div>
@@ -560,22 +563,20 @@ export function Treatments() {
           <div className="order-2">
             <p style={{ fontSize: "11px", color: "rgba(44,44,44,0.25)", letterSpacing: "0.2em", fontFamily: "'Inter', sans-serif" }}>02</p>
             <h2 className="mt-2" style={{ fontSize: "clamp(36px, 4vw, 48px)", fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>Facials</h2>
-            <p className="mt-2 uppercase" style={{ fontSize: "13px", letterSpacing: "0.15em", color: ROSE, fontFamily: "'Inter', sans-serif" }}>
-              Reveal Your Natural Radiance
+            <p className="mt-3" style={{ fontSize: "16px", fontStyle: "italic", color: ROSE, fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
+              Reveal your natural radiance
             </p>
-            <p className="mt-4" style={{ fontSize: "14px", color: "rgba(44,44,44,0.6)", lineHeight: 1.7, maxWidth: "450px", fontFamily: "'Inter', sans-serif", fontWeight: 300 }}>
+            <p className="mt-4" style={{ fontSize: "15px", color: "rgba(44,44,44,0.7)", lineHeight: 1.7, maxWidth: "450px", fontFamily: "'Inter', sans-serif", fontWeight: 400 }}>
               Tailored to your unique skin needs, our professional facials cleanse, nourish, and
-              revitalise — revealing your skin's natural radiance with every treatment. We
-              exclusively use Rosactive Professional Phytoceutical skincare from Italy for all
-              facial treatments.
+              revitalise — revealing your skin's natural radiance with every treatment.
             </p>
             <div className="mt-6">
-              <p style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgba(44,44,44,0.25)", fontFamily: "'Inter', sans-serif" }} className="uppercase mb-3">FACIAL MENU</p>
+              <p style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgba(44,44,44,0.25)", fontFamily: "'Inter', sans-serif" }} className="uppercase mb-3">MENU</p>
               <MenuRow name="Dermaplane Glow n Go" duration="60 min" price="$179" />
               <MenuRow name="Holistic Reflexology Facial" duration="75 min" price="$159" />
             </div>
-            <p className="mt-4" style={{ fontSize: "12px", fontStyle: "italic", color: "rgba(44,44,44,0.4)", fontFamily: "'Cormorant Garamond', serif" }}>
-              All facials use Rosactive Phytoceutical products — see below.
+            <p className="mt-4" style={{ fontSize: "13px", fontStyle: "italic", color: "rgba(44,44,44,0.5)", fontFamily: "'Cormorant Garamond', serif" }}>
+              All facials use Rosactive Phytoceutical skincare from Italy — see below.
             </p>
             <div className="mt-6">
               <PillButton>Book a Facial</PillButton>
@@ -588,20 +589,23 @@ export function Treatments() {
       <section id="addons" style={{ borderTop: "1px solid rgba(196,146,155,0.12)", padding: "80px 0", background: "#FDF8F4" }}>
         <div className="max-w-5xl mx-auto px-6">
           {/* Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <p style={{ fontSize: "11px", letterSpacing: "0.3em", color: ROSE, fontFamily: "'Inter', sans-serif" }} className="uppercase mb-3">
               ENHANCE YOUR EXPERIENCE
             </p>
             <h2 style={{ fontSize: "clamp(32px, 4vw, 44px)", fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, color: CHARCOAL }}>
               Add-On Spa Services
             </h2>
-            <p className="mt-4 mx-auto" style={{ maxWidth: "500px", fontSize: "14px", color: "rgba(44,44,44,0.55)", lineHeight: 1.7, fontFamily: "'Inter', sans-serif", fontWeight: 300 }}>
-              Add a little extra bliss to any treatment. Each add-on is designed to complement your session and elevate your experience.
+            <p className="mt-3" style={{ fontSize: "16px", fontStyle: "italic", color: ROSE, fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
+              Add a little extra bliss to your treatment
+            </p>
+            <p className="mt-4 mx-auto" style={{ maxWidth: "500px", fontSize: "15px", color: "rgba(44,44,44,0.7)", lineHeight: 1.7, fontFamily: "'Inter', sans-serif", fontWeight: 400 }}>
+              Each add-on is designed to complement your session and elevate your experience.
             </p>
           </div>
 
-          {/* Add-on cards grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* Add-on cards grid — tightened spacing, squared sans-serif titles */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {[
               {
                 title: "Eye Revival",
@@ -631,7 +635,7 @@ export function Treatments() {
                 title: "Sole Revival Foot Ritual",
                 duration: "",
                 price: "$50",
-                description: "Feet are submerged in a warm soothing infusion of botanicals, flower petals, Epsom salts, and aromatherapy oils, then gently scrubbed with sugar crystals to soften rough skin. Mineral-rich salts ease tension and stress — feet feel refreshed, relaxed and renewed.",
+                description: "Feet submerged in a warm infusion of botanicals, flower petals, Epsom salts, and aromatherapy oils, then gently scrubbed with sugar crystals to soften rough skin. Mineral-rich salts ease tension — feet feel refreshed, relaxed and renewed.",
                 note: "Does not include gel polish or a full pedicure service.",
               },
               {
@@ -641,28 +645,44 @@ export function Treatments() {
                 description: "Invigorating sugar crystals exfoliate those hard-to-reach areas on your back, finished with hot towels for a smooth, refreshed, divine feel.",
                 note: "Add to any massage as a pre-treatment ritual.",
               },
+              {
+                title: "Full Body Sugar Polish",
+                duration: "30 mins",
+                price: "$70",
+                description: "A divine full-body sugar exfoliation ritual that gently buffs away dullness from head to toe, leaving skin softer, smoother, and beautifully glowing. Finished with warm towels and a light hydrating veil.",
+                note: "Add to any massage or facial for the ultimate top-to-toe glow.",
+              },
             ].map((addon) => (
               <div
                 key={addon.title}
                 style={{
                   border: "0.5px solid rgba(196,146,155,0.18)",
-                  borderRadius: "14px",
-                  padding: "28px 24px",
+                  borderRadius: "10px",
+                  padding: "18px 18px",
                   background: "rgba(253,248,244,0.8)",
-                  boxShadow: "0 4px 20px rgba(196,146,155,0.06)",
+                  boxShadow: "0 2px 12px rgba(196,146,155,0.05)",
                   display: "flex",
                   flexDirection: "column",
                 }}
               >
-                {/* Price badge */}
-                <div className="flex items-start justify-between gap-3 mb-3">
-                  <h3 style={{ fontSize: "16px", fontFamily: "'Cormorant Garamond', serif", fontWeight: 500, color: CHARCOAL, lineHeight: 1.3 }}>
+                {/* Title + price */}
+                <div className="flex items-start justify-between gap-2 mb-2">
+                  <h3
+                    style={{
+                      fontSize: "15px",
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 600,
+                      letterSpacing: "-0.005em",
+                      color: CHARCOAL,
+                      lineHeight: 1.25,
+                    }}
+                  >
                     {addon.title}
                   </h3>
                   <span
                     style={{
-                      fontSize: "15px",
-                      fontWeight: 500,
+                      fontSize: "14px",
+                      fontWeight: 600,
                       color: ROSE,
                       fontFamily: "'Inter', sans-serif",
                       whiteSpace: "nowrap",
@@ -672,15 +692,15 @@ export function Treatments() {
                   </span>
                 </div>
                 {addon.duration && (
-                  <p style={{ fontSize: "11px", letterSpacing: "0.12em", color: "rgba(44,44,44,0.3)", fontFamily: "'Inter', sans-serif", marginBottom: "10px" }} className="uppercase">
+                  <p style={{ fontSize: "10px", letterSpacing: "0.12em", color: "rgba(44,44,44,0.35)", fontFamily: "'Inter', sans-serif", marginBottom: "8px" }} className="uppercase">
                     {addon.duration}
                   </p>
                 )}
-                <p style={{ fontSize: "13px", color: "rgba(44,44,44,0.55)", lineHeight: 1.65, fontFamily: "'Inter', sans-serif", fontWeight: 300, flexGrow: 1 }}>
+                <p style={{ fontSize: "13px", color: "rgba(44,44,44,0.65)", lineHeight: 1.55, fontFamily: "'Inter', sans-serif", fontWeight: 400, flexGrow: 1 }}>
                   {addon.description}
                 </p>
                 {addon.note && (
-                  <p className="mt-3" style={{ fontSize: "11px", fontStyle: "italic", color: "rgba(44,44,44,0.35)", fontFamily: "'Cormorant Garamond', serif" }}>
+                  <p className="mt-2" style={{ fontSize: "12px", fontStyle: "italic", color: "rgba(44,44,44,0.45)", fontFamily: "'Cormorant Garamond', serif" }}>
                     {addon.note}
                   </p>
                 )}
@@ -688,8 +708,8 @@ export function Treatments() {
             ))}
           </div>
 
-          <p className="text-center mt-10" style={{ fontSize: "13px", color: "rgba(44,44,44,0.4)", fontFamily: "'Inter', sans-serif", fontWeight: 300 }}>
-            Add-ons can be combined with any facial or massage treatment. Mention your selections when booking.
+          <p className="text-center mt-8" style={{ fontSize: "13px", fontStyle: "italic", color: "rgba(44,44,44,0.5)", fontFamily: "'Cormorant Garamond', serif" }}>
+            Add-ons combine beautifully with any facial or massage — Sophie will offer them when you book.
           </p>
         </div>
       </section>
@@ -700,13 +720,12 @@ export function Treatments() {
           <div className="order-2 md:order-1">
             <p style={{ fontSize: "11px", color: "rgba(44,44,44,0.25)", letterSpacing: "0.2em", fontFamily: "'Inter', sans-serif" }}>03</p>
             <h2 className="mt-2" style={{ fontSize: "clamp(36px, 4vw, 48px)", fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>Exfoliation</h2>
-            <p className="mt-2 uppercase" style={{ fontSize: "13px", letterSpacing: "0.15em", color: ROSE, fontFamily: "'Inter', sans-serif" }}>
-              Smooth, Refresh, Renew
+            <p className="mt-3" style={{ fontSize: "16px", fontStyle: "italic", color: ROSE, fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
+              Smooth, refresh, renew
             </p>
-            <p className="mt-4" style={{ fontSize: "14px", color: "rgba(44,44,44,0.6)", lineHeight: 1.7, maxWidth: "450px", fontFamily: "'Inter', sans-serif", fontWeight: 300 }}>
+            <p className="mt-4" style={{ fontSize: "15px", color: "rgba(44,44,44,0.7)", lineHeight: 1.7, maxWidth: "450px", fontFamily: "'Inter', sans-serif", fontWeight: 400 }}>
               Indulge in a luxurious full-body scrub using premium salts and oils, expertly applied
-              to smooth, soften, and deeply refresh your skin from head to toe. Every product is
-              eco-friendly and honours the planet.
+              to smooth, soften, and deeply refresh your skin from head to toe.
             </p>
             <div className="mt-6">
               <p style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgba(44,44,44,0.25)", fontFamily: "'Inter', sans-serif" }} className="uppercase mb-3">MENU</p>
@@ -714,6 +733,9 @@ export function Treatments() {
               <MenuRow name="Salt & Oil Revival" duration="55 min" price="$90" />
               <MenuRow name="Gentle Glow Polish" duration="60 min" price="$85" />
             </div>
+            <p className="mt-4" style={{ fontSize: "13px", fontStyle: "italic", color: "rgba(44,44,44,0.5)", fontFamily: "'Cormorant Garamond', serif" }}>
+              Every product is eco-friendly and honours the planet.
+            </p>
             <div className="mt-6">
               <PillButton>Book an Exfoliation</PillButton>
             </div>
