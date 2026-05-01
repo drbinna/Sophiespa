@@ -2,6 +2,7 @@ import { Outlet } from "react-router";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { BookingModal } from "./BookingModal";
+import { FloatingContact } from "./FloatingContact";
 
 export function Layout() {
   return (
@@ -21,6 +22,7 @@ export function Layout() {
       <Outlet />
       <Footer />
       <BookingModal />
+      <FloatingContact />
     </div>
   );
 }

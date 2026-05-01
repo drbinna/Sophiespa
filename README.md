@@ -1,11 +1,21 @@
+# Sophie Spa
 
-  # Build the attached design
+Website for Sophie Spa — a mobile beauty and wellness business based in Auckland, New Zealand.
 
-  This is a code bundle for Build the attached design. The original project is available at https://www.figma.com/design/60d2rDd7HdJ9kGaLR9DxoV/Build-the-attached-design.
+## Getting Started
 
-  ## Running the code
+```bash
+npm install
+npm run dev
+```
 
-  Run `npm i` to install the dependencies.
+## Tech Stack
 
-  Run `npm run dev` to start the development server.
-  
+- React
+- TypeScript
+- Tailwind CSS
+- Vite
+
+## Deployment
+
+This project is deployed on Vercel. Pushes to `main` trigger automatic deployments.

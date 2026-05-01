@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import { Plus, Minus, Phone, Mail } from "lucide-react";
 import { useScrollReveal } from "./useScrollReveal";
 
 const faqs = [
@@ -59,6 +59,59 @@ export function Faq() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Still have questions */}
+        <div
+          className="mt-12 text-center p-8 rounded-2xl"
+          style={{
+            background: "rgba(196,146,155,0.06)",
+            border: "0.5px solid rgba(196,146,155,0.1)",
+          }}
+        >
+          <p
+            className="font-['Cormorant_Garamond'] text-[#2C2C2C] mb-2"
+            style={{ fontSize: "1.3rem", fontWeight: 400 }}
+          >
+            Still have questions?
+          </p>
+          <p
+            className="font-['Inter'] text-[#2C2C2C]/50 mb-5"
+            style={{ fontSize: "0.85rem", fontWeight: 300 }}
+          >
+            Sophie would love to hear from you.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="tel:+64272516985"
+              className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity"
+              style={{
+                fontSize: "0.85rem",
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 500,
+                color: "#C4929B",
+                textDecoration: "none",
+              }}
+            >
+              <Phone size={16} strokeWidth={1.5} />
+              027 251 6985
+            </a>
+            <span style={{ color: "rgba(44,44,44,0.2)" }} className="hidden sm:inline">·</span>
+            <a
+              href="mailto:sophiespa888@gmail.com?subject=Question"
+              className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity"
+              style={{
+                fontSize: "0.85rem",
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 500,
+                color: "#C4929B",
+                textDecoration: "none",
+              }}
+            >
+              <Mail size={16} strokeWidth={1.5} />
+              sophiespa888@gmail.com
+            </a>
+          </div>
         </div>
       </div>
     </section>

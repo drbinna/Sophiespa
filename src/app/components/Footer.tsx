@@ -50,26 +50,24 @@ export function Footer() {
           {/* Contact */}
           <div>
             <p className="font-['Inter'] text-white mb-4" style={{ fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
-              Contact
+              Reach Sophie Directly
             </p>
-            <div className="space-y-2 font-['Inter'] text-white/50" style={{ fontSize: "0.85rem", fontWeight: 300 }}>
-              <p>
-                <a
-                  href="tel:+64272516985"
-                  className="text-white/50 hover:text-white transition-colors no-underline"
-                >
-                  (027) 251-6985
-                </a>
-              </p>
-              <p>
-                <a
-                  href="mailto:sophiespa888@gmail.com?subject=Booking%20enquiry"
-                  className="text-white/50 hover:text-white transition-colors no-underline"
-                >
-                  sophiespa888@gmail.com
-                </a>
-              </p>
-              <p>Auckland, New Zealand</p>
+            <div className="space-y-3 font-['Inter']" style={{ fontSize: "0.85rem", fontWeight: 300 }}>
+              <a
+                href="tel:+64272516985"
+                className="flex items-center gap-2 text-white/70 hover:text-[#C4929B] transition-colors no-underline"
+              >
+                <span style={{ fontSize: "1rem" }}>📞</span>
+                027 251 6985
+              </a>
+              <a
+                href="mailto:sophiespa888@gmail.com?subject=Booking%20enquiry"
+                className="flex items-center gap-2 text-white/70 hover:text-[#C4929B] transition-colors no-underline"
+              >
+                <span style={{ fontSize: "1rem" }}>✉️</span>
+                sophiespa888@gmail.com
+              </a>
+              <p className="text-white/50 mt-2">Auckland, New Zealand</p>
             </div>
           </div>
 

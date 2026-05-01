@@ -823,8 +823,6 @@ export function Treatments() {
             <div className="mt-6">
               <p style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgba(44,44,44,0.25)", fontFamily: "'Inter', sans-serif" }} className="uppercase mb-3">MENU</p>
               <MenuRow serviceId="botanical-scrub" name="Botanical Body Scrub" duration="40 min" price="$70" />
-              <MenuRow serviceId="salt-oil-revival" name="Salt & Oil Revival" duration="55 min" price="$90" />
-              <MenuRow serviceId="gentle-polish" name="Gentle Glow Polish" duration="60 min" price="$85" />
             </div>
             <p className="mt-4" style={{ fontSize: "13px", fontStyle: "italic", color: "rgba(44,44,44,0.5)", fontFamily: "'Cormorant Garamond', serif" }}>
               Every product is eco-friendly and honours the planet.

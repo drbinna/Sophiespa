@@ -94,26 +94,6 @@ const SERVICES: Service[] = [
     description: "Plant-based exfoliation that leaves skin soft and renewed.",
     thumb: "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774177218/u5442978949_Exfoliation_--v_7_a8f1b527-1dc7-4d7f-808c-36227825b856_0_bkxwgc.png",
   },
-  {
-    id: "salt-oil-revival",
-    name: "Salt & Oil Revival",
-    category: "Body",
-    duration: "55 min",
-    durationMinutes: 55,
-    price: "$90",
-    description: "Mineral salt polish followed by a deeply nourishing oil massage.",
-    thumb: "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774170431/Soph_Exfo_mwep5s.jpg",
-  },
-  {
-    id: "gentle-polish",
-    name: "Gentle Glow Polish",
-    category: "Body",
-    duration: "60 min",
-    durationMinutes: 60,
-    price: "$85",
-    description: "A softer, sensitive-skin-friendly version of our body polish.",
-    thumb: "https://res.cloudinary.com/dd2yh56dr/image/upload/v1774170986/Gemini_Generated_Image_c597zfc597zfc597_ft7hrw.png",
-  },
   // Other
   {
     id: "not-sure",
@@ -536,10 +516,10 @@ export function BookingModal() {
 
 function Header({ step }: { step: Step }) {
   const titles: Record<Step, { eyebrow: string; heading: string }> = {
-    1: { eyebrow: "Book your escape · Step 1 of 4", heading: "What would you like?" },
-    2: { eyebrow: "Book your escape · Step 2 of 4", heading: "When works for you?" },
-    3: { eyebrow: "Book your escape · Step 3 of 4", heading: "Add a little extra bliss?" },
-    4: { eyebrow: "Book your escape · Step 4 of 4", heading: "How do we reach you?" },
+    1: { eyebrow: "Book your spa treatment today · Step 1 of 4", heading: "What would you like?" },
+    2: { eyebrow: "Book your spa treatment today · Step 2 of 4", heading: "When works for you?" },
+    3: { eyebrow: "Book your spa treatment today · Step 3 of 4", heading: "Add a little extra bliss?" },
+    4: { eyebrow: "Book your spa treatment today · Step 4 of 4", heading: "How do we reach you?" },
   };
   return (
     <>
@@ -1109,10 +1089,32 @@ function SuccessScreen({
       </div>
 
       <p
-        className="font-['Inter'] text-[#2C2C2C]/60 mb-6 mx-auto max-w-md"
+        className="font-['Inter'] text-[#2C2C2C]/60 mb-4 mx-auto max-w-md"
         style={{ fontSize: "0.9rem", fontWeight: 300, lineHeight: 1.6 }}
       >
         We'll call or text you at {snapshot.phone} within 24 hours to confirm your exact appointment time.
+      </p>
+
+      <p
+        className="font-['Inter'] text-[#2C2C2C]/45 mb-6 mx-auto"
+        style={{ fontSize: "0.8rem", fontWeight: 300 }}
+      >
+        Need to reach Sophie?{" "}
+        <a
+          href="tel:+64272516985"
+          className="text-[#C4929B] hover:underline transition-all"
+          style={{ textDecoration: "none" }}
+        >
+          027 251 6985
+        </a>
+        {" · "}
+        <a
+          href="mailto:sophiespa888@gmail.com"
+          className="text-[#C4929B] hover:underline transition-all"
+          style={{ textDecoration: "none" }}
+        >
+          Email
+        </a>
       </p>
 
       <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">

@@ -1,4 +1,4 @@
-import { Leaf, ShieldCheck, Recycle, MapPin, Clock, Phone } from "lucide-react";
+import { Leaf, ShieldCheck, Recycle, MapPin, Clock, Phone, Mail } from "lucide-react";
 import { useScrollReveal } from "./useScrollReveal";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
@@ -360,19 +360,35 @@ export function About() {
             >
               Just reach out anytime!
             </p>
-            <a
-              href="tel:0272516985"
-              className="inline-flex items-center gap-2 no-underline transition-all"
-              style={{
-                fontSize: 14,
-                fontWeight: 500,
-                color: "#C4929B",
-                letterSpacing: "0.03em",
-              }}
-            >
-              <Phone size={16} strokeWidth={1.5} />
-              Sophie — 027 251 6985
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="tel:0272516985"
+                className="inline-flex items-center gap-2 no-underline hover:opacity-80 transition-all"
+                style={{
+                  fontSize: 14,
+                  fontWeight: 500,
+                  color: "#C4929B",
+                  letterSpacing: "0.03em",
+                }}
+              >
+                <Phone size={16} strokeWidth={1.5} />
+                027 251 6985
+              </a>
+              <span style={{ color: "rgba(44,44,44,0.2)" }} className="hidden sm:inline">·</span>
+              <a
+                href="mailto:sophiespa888@gmail.com?subject=Enquiry"
+                className="inline-flex items-center gap-2 no-underline hover:opacity-80 transition-all"
+                style={{
+                  fontSize: 14,
+                  fontWeight: 500,
+                  color: "#C4929B",
+                  letterSpacing: "0.03em",
+                }}
+              >
+                <Mail size={16} strokeWidth={1.5} />
+                sophiespa888@gmail.com
+              </a>
+            </div>
           </div>
         </div>
       </section>

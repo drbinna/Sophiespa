@@ -20,7 +20,7 @@ export function CtaBanner() {
           Recenter Your Senses
         </h2>
         <p className="font-['Inter'] text-white/70 max-w-lg mx-auto mb-10" style={{ fontSize: "1rem", fontWeight: 300, lineHeight: 1.7 }}>
-          Escape the rush and rediscover balance. Book your next treatment.
+          Escape the rush and rediscover balance. Book your spa treatment today.
         </p>
         <button
           onClick={() => window.dispatchEvent(new CustomEvent("sophie:open-booking"))}
@@ -29,6 +29,16 @@ export function CtaBanner() {
         >
           Book Now
         </button>
+        <p className="mt-5 font-['Inter'] text-white/50 text-sm font-light tracking-wide">
+          or reach out at{" "}
+          <a
+            href="mailto:sophiespa888@gmail.com?subject=Booking%20enquiry"
+            className="text-white/70 hover:text-[#C4929B] transition-colors duration-300"
+            style={{ textDecoration: "none" }}
+          >
+            sophiespa888@gmail.com
+          </a>
+        </p>
       </div>
     </section>
   );

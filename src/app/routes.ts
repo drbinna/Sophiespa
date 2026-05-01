@@ -4,6 +4,7 @@ import { HomePage } from "./components/HomePage";
 import { About } from "./components/About";
 import { Treatments } from "./components/Treatments";
 import { Services } from "./components/Services";
+import { NotFound } from "./components/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
       { path: "about", Component: About },
       { path: "treatments", Component: Treatments },
       { path: "services", Component: Services },
+      { path: "*", Component: NotFound },
     ],
   },
 ]);

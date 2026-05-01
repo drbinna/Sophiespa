@@ -56,6 +56,15 @@ export function Hero() {
             Book Your Escape
             <span className="inline-block ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
           </button>
+          <p className="mt-5 font-['Inter'] text-white/60 text-sm font-light tracking-wide">
+            or call Sophie directly at{" "}
+            <a
+              href="tel:+64272516985"
+              className="text-white/80 hover:text-[#C4929B] transition-colors duration-300"
+            >
+              027 251 6985
+            </a>
+          </p>
         </div>
       </div>
 

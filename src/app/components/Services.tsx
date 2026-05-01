@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
-import { MapPin, Clock, Phone } from "lucide-react";
+import { MapPin, Clock, Phone, Mail } from "lucide-react";
 
 const travelRates = [
   { time: "Core service area", fee: "Included" },
@@ -254,6 +254,34 @@ function TreatmentCard({
           </button>
         )}
       </div>
+
+      {/* Contact line */}
+      <p
+        className="mt-4"
+        style={{
+          fontSize: "12px",
+          color: "rgba(44,44,44,0.45)",
+          fontFamily: "'Inter', sans-serif",
+          fontWeight: 300,
+        }}
+      >
+        Questions?{" "}
+        <a
+          href="tel:+64272516985"
+          className="hover:text-[#C4929B] transition-colors"
+          style={{ color: "rgba(44,44,44,0.6)", textDecoration: "none" }}
+        >
+          Call Sophie
+        </a>
+        {" · "}
+        <a
+          href="mailto:sophiespa888@gmail.com?subject=Booking%20enquiry"
+          className="hover:text-[#C4929B] transition-colors"
+          style={{ color: "rgba(44,44,44,0.6)", textDecoration: "none" }}
+        >
+          Email
+        </a>
+      </p>
     </div>
   );
 
@@ -424,18 +452,18 @@ const massages: Treatment[] = [
     comingSoon: false,
   },
   {
-    name: "Corporate Chair Massage",
-    duration: "15–30 min per staff member",
+    name: "Workplace Wellness",
+    duration: "10–20 min per person",
     price: "TBC",
     description:
-      "Feeling like your team could use a boost? Elevate your workplace with a corporate chair or table massage experience that delivers the benefits of a professional treatment—right in the convenience of your workplace.\n\nDesigned to support your team's wellbeing, energy, and performance, all that's needed is a small, designated space to create a 15–30 minute recharge and a slice of calm for each staff member.\n\nIn today's fast-paced environment, stress and physical tension can quietly build, impacting focus, morale, and productivity. Our on-site massage service offers a seamless, hassle-free solution—creating a space within the workplace for staff to pause, recharge, and re-centre without disrupting the flow of the day.\n\nSeated comfortably and fully clothed, your team will enjoy targeted massage techniques that ease tension in the neck, shoulders, and upper body—areas most affected by desk work and daily demands. In just minutes, muscles begin to soften, minds feel clearer, and a sense of balance is restored.\n\nBeyond the physical benefits, this is a powerful way to show genuine appreciation. Each session becomes a small but meaningful reset—leaving staff feeling valued, re-energised, and better equipped to perform at their best.\n\nWith minimal space required and flexible session options, corporate massage integrates effortlessly into your workplace—whether as a one-off wellness initiative, a team reward, or an ongoing investment in staff care.\n\nBecause when your people feel supported, balanced, and just a little bit indulged, they don't just work better—they thrive.",
+      "Give your team a simple, meaningful way to reset — without ever leaving the office.\n\nSophie Spa brings professional on-site chair massage to workplaces across Auckland, helping your staff feel refreshed, focused, and genuinely cared for.\n\nChair massage is a short, targeted treatment performed in a specially designed massage chair. No oils required, no need to change clothing, and sessions range from 10–20 minutes. It's convenient, non-invasive, and fits easily into the workday.\n\nSophie brings everything — all you need is a quiet corner. Sessions can be scheduled in advance or on the day, and your team simply rotates through while the workday continues around them.",
     includes: [
-      "On-site setup",
-      "Fully clothed chair massage",
-      "Neck, shoulder & upper body focus",
-      "Flexible 15–30 min sessions",
-      "Team of therapists available for simultaneous treatments",
+      "No oils required",
+      "No need to change clothing",
+      "10–20 minute sessions",
+      "We come to you",
     ],
+    note: "Perfect for staff wellness days, corporate events, busy teams needing a reset, and reward & recognition moments.",
     image: IMG_CORPORATE,
     comingSoon: false,
     enquire: true,
@@ -777,20 +805,37 @@ export function Services() {
             >
               Just reach out anytime!
             </p>
-            <a
-              href="tel:0272516985"
-              className="inline-flex items-center gap-2"
-              style={{
-                fontSize: "14px",
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 500,
-                color: ROSE,
-                textDecoration: "none",
-              }}
-            >
-              <Phone size={16} strokeWidth={1.5} />
-              Sophie — 027 251 6985
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="tel:0272516985"
+                className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity"
+                style={{
+                  fontSize: "14px",
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 500,
+                  color: ROSE,
+                  textDecoration: "none",
+                }}
+              >
+                <Phone size={16} strokeWidth={1.5} />
+                027 251 6985
+              </a>
+              <span style={{ color: "rgba(44,44,44,0.2)" }} className="hidden sm:inline">·</span>
+              <a
+                href="mailto:sophiespa888@gmail.com?subject=Travel%20Quote"
+                className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity"
+                style={{
+                  fontSize: "14px",
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 500,
+                  color: ROSE,
+                  textDecoration: "none",
+                }}
+              >
+                <Mail size={16} strokeWidth={1.5} />
+                sophiespa888@gmail.com
+              </a>
+            </div>
           </div>
         </div>
       </section>
