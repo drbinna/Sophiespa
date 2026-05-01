@@ -56,11 +56,11 @@ export function Hero() {
             Book Now
             <span className="inline-block ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
           </button>
-          <p className="mt-5 font-['Inter'] text-white/60 text-sm font-light tracking-wide">
-            or call Sophie directly at{" "}
+          <p className="mt-5 font-['Inter'] text-white text-sm font-medium tracking-wide">
+            Call Sophie —{" "}
             <a
               href="tel:+64272516985"
-              className="text-white/80 hover:text-[#C4929B] transition-colors duration-300"
+              className="text-white hover:text-[#C4929B] transition-colors duration-300 font-semibold"
             >
               027 251 6985
             </a>
