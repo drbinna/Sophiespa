@@ -53,7 +53,7 @@ export function Hero() {
             onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 6px 32px rgba(196, 146, 155, 0.55)"; e.currentTarget.style.transform = "translateY(-1px)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "0 4px 24px rgba(196, 146, 155, 0.4)"; e.currentTarget.style.transform = "translateY(0)"; }}
           >
-            Book Your Escape
+            Book Now
             <span className="inline-block ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
           </button>
           <p className="mt-5 font-['Inter'] text-white/60 text-sm font-light tracking-wide">

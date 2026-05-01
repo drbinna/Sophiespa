@@ -207,9 +207,9 @@ export function About() {
             >
               Ready to experience it yourself?
             </p>
-            <a
-              href="/#contact"
-              className="inline-block px-10 py-4 rounded-full text-white cursor-pointer transition-all duration-500 no-underline"
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("sophie:open-booking"))}
+              className="inline-block px-10 py-4 rounded-full text-white cursor-pointer transition-all duration-500 border-none"
               style={{
                 fontSize: "0.95rem",
                 fontWeight: 500,
@@ -230,7 +230,7 @@ export function About() {
             >
               Book Your Escape
               <span className="inline-block ml-2">→</span>
-            </a>
+            </button>
           </div>
         </div>
       </section>

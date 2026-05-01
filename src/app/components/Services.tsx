@@ -237,6 +237,7 @@ function TreatmentCard({
           </button>
         ) : (
           <button
+            onClick={() => window.dispatchEvent(new CustomEvent("sophie:open-booking"))}
             className="cursor-pointer transition-all hover:brightness-110"
             style={{
               background: ROSE,
@@ -880,6 +881,7 @@ export function Services() {
         </p>
         <div className="mt-6">
           <button
+            onClick={() => window.dispatchEvent(new CustomEvent("sophie:open-booking"))}
             className="cursor-pointer transition-all hover:brightness-110"
             style={{
               background: ROSE,
