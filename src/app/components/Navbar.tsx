@@ -66,8 +66,12 @@ export function Navbar() {
             <button
               key={link.label}
               onClick={() => handleNav(link)}
-              className="font-['Inter'] text-[#2C2C2C]/70 hover:text-[#2C2C2C] transition-all duration-300 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-5 py-2 cursor-pointer hover:bg-white/35 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]"
-              style={{ fontSize: "0.85rem", fontWeight: 400, letterSpacing: "0.05em" }}
+              className={`font-['Inter'] transition-all duration-300 backdrop-blur-md border rounded-full px-5 py-2 cursor-pointer ${
+                scrolled
+                  ? "text-[#2C2C2C]/80 hover:text-[#2C2C2C] bg-white/40 border-white/40 hover:bg-white/60"
+                  : "text-white hover:text-white bg-white/25 border-white/40 hover:bg-white/40 shadow-[0_0_10px_rgba(0,0,0,0.1)]"
+              }`}
+              style={{ fontSize: "0.85rem", fontWeight: 500, letterSpacing: "0.05em" }}
             >
               {link.label}
             </button>
@@ -75,10 +79,14 @@ export function Navbar() {
         </div>
 
         <button
-          className="md:hidden text-[#2C2C2C] bg-transparent border-none cursor-pointer"
+          className={`md:hidden bg-transparent border-none cursor-pointer p-2 rounded-full transition-all duration-300 ${
+            scrolled
+              ? "text-[#2C2C2C]"
+              : "text-white bg-white/20 backdrop-blur-sm"
+          }`}
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileOpen ? <X size={24} /> : <Menu size={28} />}
         </button>
       </div>
 
